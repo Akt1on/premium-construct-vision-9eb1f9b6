@@ -1,15 +1,119 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { makeStub } from "@/components/StubPage";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { motion } from "motion/react";
+import { useMemo, useState } from "react";
+import { ArrowUpRight, Filter } from "lucide-react";
+import excavator from "@/assets/excavator.jpg";
+import paver from "@/assets/paver.jpg";
+import roller from "@/assets/roller.jpg";
+import truck from "@/assets/truck.jpg";
 
 export const Route = createFileRoute("/fleet")({
   head: () => ({
     meta: [
-      { title: "Спецтехника. — Премиум Строй" },
-      { name: "description", content: "Собственный парк из 87 единиц техники: асфальтоукладчики, катки, экскаваторы, самосвалы. Аренда с оператором." },
-      { property: "og:title", content: "Спецтехника. — Премиум Строй" },
-      { property: "og:description", content: "Собственный парк из 87 единиц техники: асфальтоукладчики, катки, экскаваторы, самосвалы. Аренда с оператором." },
+      { title: "Парк техники — Премиум Строй · Аренда спецтехники в Москве" },
+      { name: "description", content: "87 единиц собственной спецтехники: экскаваторы, асфальтоукладчики, катки, самосвалы, погрузчики. Аренда с оператором 24/7." },
+      { property: "og:title", content: "Парк техники Премиум Строй" },
+      { property: "og:description", content: "87 машин. Все с операторами. Доставка на объект." },
+      { property: "og:url", content: "/fleet" },
     ],
     links: [{ rel: "canonical", href: "/fleet" }],
   }),
-  component: makeStub("/ fleet", "Спецтехника.", "Собственный парк из 87 единиц техники: асфальтоукладчики, катки, экскаваторы, самосвалы. Аренда с оператором."),
+  component: FleetPage,
 });
+
+type Cat = "all" | "excavation" | "paving" | "compaction" | "transport";
+
+const FLEET = [
+  { id: "EX-CAT-336", cat: "excavation", name: "Экскаватор Cat 336", spec: "36 т · 1.9 м³", price: "3 200 ₽/час", img: excavator },
+  { id: "EX-VOL-EC", cat: "excavation", name: "Экскаватор Volvo EC220", spec: "22 т · 1.2 м³", price: "2 600 ₽/час", img: excavator },
+  { id: "PV-VOG-S18", cat: "paving", name: "Асфальтоукладчик Vögele S1800-3", spec: "ширина до 9 м", price: "5 800 ₽/час", img: paver },
+  { id: "PV-DYN-F18", cat: "paving", name: "Dynapac F1800W", spec: "колёсный · до 6 м", price: "4 900 ₽/час", img: paver },
+  { id: "RL-HAM-HD", cat: "compaction", name: "Каток Hamm HD+ 90", spec: "9 т · вибро", price: "2 200 ₽/час", img: roller },
+  { id: "RL-BOM-22", cat: "compaction", name: "Bomag BW 213", spec: "13 т · одновальц.", price: "2 500 ₽/час", img: roller },
+  { id: "TR-VOL-FH", cat: "transport", name: "Самосвал Volvo FH", spec: "20 т · 12 м³", price: "1 800 ₽/час", img: truck },
+  { id: "TR-MAN-TG", cat: "transport", name: "MAN TGS 33.440", spec: "25 т · 16 м³", price: "2 100 ₽/час", img: truck },
+] as const;
+
+const CATS: { id: Cat; label: string; count: string }[] = [
+  { id: "all", label: "Вся техника", count: "87" },
+  { id: "excavation", label: "Экскаваторы", count: "21" },
+  { id: "paving", label: "Укладчики", count: "12" },
+  { id: "compaction", label: "Катки", count: "18" },
+  { id: "transport", label: "Самосвалы", count: "36" },
+];
+
+function FleetPage() {
+  const [cat, setCat] = useState<Cat>("all");
+  const items = useMemo(() => (cat === "all" ? FLEET : FLEET.filter((f) => f.cat === cat)), [cat]);
+
+  return (
+    <div className="relative">
+      <section className="relative overflow-hidden pt-40 pb-16">
+        <div className="absolute inset-0 -z-10 bg-mesh opacity-50" />
+        <div className="absolute inset-0 -z-10 grid-bg opacity-30" />
+        <div className="mx-auto max-w-[1500px] px-6">
+          <div className="font-mono text-[11px] uppercase tracking-[0.3em] text-ember">/ парк техники</div>
+          <h1 className="mt-4 text-display text-[clamp(3rem,10vw,9rem)]">
+            <span className="block">87 машин.</span>
+            <span className="block translate-x-[6vw]"><span className="bg-gradient-to-r from-foreground to-ember bg-clip-text text-transparent">Готовы к работе.</span></span>
+          </h1>
+          <p className="mt-10 max-w-2xl text-lg text-muted-foreground md:text-xl">
+            Собственный парк современной техники. Все машины проходят ежедневный осмотр. Операторы — в штате с опытом от 7 лет.
+          </p>
+        </div>
+      </section>
+
+      <section className="sticky top-16 z-30 border-y border-white/10 bg-background/80 backdrop-blur-xl">
+        <div className="mx-auto flex max-w-[1500px] items-center gap-2 overflow-x-auto px-6 py-4">
+          <Filter className="h-4 w-4 shrink-0 text-ember" />
+          {CATS.map((c) => (
+            <button
+              key={c.id}
+              onClick={() => setCat(c.id)}
+              className={`shrink-0 rounded-sm border px-4 py-2 font-mono text-[11px] uppercase tracking-widest transition ${
+                cat === c.id
+                  ? "border-ember bg-ember text-primary-foreground"
+                  : "border-white/10 text-muted-foreground hover:border-ember hover:text-foreground"
+              }`}
+            >
+              {c.label} <span className="opacity-60">[{c.count}]</span>
+            </button>
+          ))}
+        </div>
+      </section>
+
+      <section className="py-20">
+        <div className="mx-auto grid max-w-[1500px] gap-px bg-white/5 px-6 md:grid-cols-2 lg:grid-cols-3">
+          {items.map((m, i) => (
+            <motion.article
+              key={m.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.5, delay: i * 0.04 }}
+              className="group relative overflow-hidden bg-background"
+            >
+              <div className="relative aspect-[4/3] overflow-hidden">
+                <img src={m.img} alt={m.name} loading="lazy" className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1.2s] group-hover:scale-110" />
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
+                <div className="absolute left-4 top-4 font-mono text-[10px] uppercase tracking-widest text-ember">{m.id}</div>
+                <div className="absolute right-4 top-4 rounded-sm glass px-2 py-1 font-mono text-[10px] uppercase tracking-widest">в наличии</div>
+              </div>
+              <div className="p-6">
+                <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">{m.spec}</div>
+                <h3 className="mt-2 font-display text-xl font-bold transition group-hover:text-ember">{m.name}</h3>
+                <div className="mt-4 flex items-center justify-between">
+                  <span className="font-display text-lg font-black text-ember">{m.price}</span>
+                  <Link to="/contacts" className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-widest hover:text-ember">
+                    Арендовать <ArrowUpRight className="h-3.5 w-3.5" />
+                  </Link>
+                </div>
+              </div>
+              <div className="absolute inset-x-0 bottom-0 h-[2px] origin-left scale-x-0 bg-ember transition-transform duration-700 group-hover:scale-x-100" />
+            </motion.article>
+          ))}
+        </div>
+      </section>
+    </div>
+  );
+}
