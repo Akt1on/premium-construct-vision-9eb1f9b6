@@ -45,17 +45,11 @@ export function SiteHeader() {
               <Link
                 key={n.to}
                 to={n.to}
-                className="relative px-3 py-2 text-sm text-muted-foreground transition hover:text-foreground"
-                activeProps={{ className: "text-foreground" }}
+                className="group relative px-3 py-2 text-sm text-muted-foreground transition hover:text-foreground"
+                activeProps={{ className: "!text-foreground [&>span:last-child]:!scale-x-100" }}
               >
-                {({ isActive }) => (
-                  <>
-                    <span>{n.label}</span>
-                    {isActive && (
-                      <motion.span layoutId="nav-dot" className="absolute -bottom-0.5 left-1/2 h-[3px] w-6 -translate-x-1/2 bg-ember" />
-                    )}
-                  </>
-                )}
+                <span>{n.label}</span>
+                <span className="absolute -bottom-0.5 left-1/2 h-[2px] w-6 -translate-x-1/2 origin-center scale-x-0 bg-ember transition-transform duration-300 group-hover:scale-x-100" />
               </Link>
             ))}
           </nav>
