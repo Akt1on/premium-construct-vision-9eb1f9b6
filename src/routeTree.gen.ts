@@ -9,7 +9,9 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ServicesRouteImport } from './routes/services'
+import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
 import { Route as PortfolioRouteImport } from './routes/portfolio'
 import { Route as FleetRouteImport } from './routes/fleet'
 import { Route as ContactsRouteImport } from './routes/contacts'
@@ -19,9 +21,19 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AdminLoginRouteImport } from './routes/admin.login'
 
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
   path: '/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RobotsDottxtRoute = RobotsDottxtRouteImport.update({
+  id: '/robots.txt',
+  path: '/robots.txt',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PortfolioRoute = PortfolioRouteImport.update({
@@ -72,7 +84,9 @@ export interface FileRoutesByFullPath {
   '/contacts': typeof ContactsRoute
   '/fleet': typeof FleetRoute
   '/portfolio': typeof PortfolioRoute
+  '/robots.txt': typeof RobotsDottxtRoute
   '/services': typeof ServicesRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/': typeof AdminIndexRoute
 }
@@ -83,7 +97,9 @@ export interface FileRoutesByTo {
   '/contacts': typeof ContactsRoute
   '/fleet': typeof FleetRoute
   '/portfolio': typeof PortfolioRoute
+  '/robots.txt': typeof RobotsDottxtRoute
   '/services': typeof ServicesRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin': typeof AdminIndexRoute
 }
@@ -95,7 +111,9 @@ export interface FileRoutesById {
   '/contacts': typeof ContactsRoute
   '/fleet': typeof FleetRoute
   '/portfolio': typeof PortfolioRoute
+  '/robots.txt': typeof RobotsDottxtRoute
   '/services': typeof ServicesRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/': typeof AdminIndexRoute
 }
@@ -108,7 +126,9 @@ export interface FileRouteTypes {
     | '/contacts'
     | '/fleet'
     | '/portfolio'
+    | '/robots.txt'
     | '/services'
+    | '/sitemap.xml'
     | '/admin/login'
     | '/admin/'
   fileRoutesByTo: FileRoutesByTo
@@ -119,7 +139,9 @@ export interface FileRouteTypes {
     | '/contacts'
     | '/fleet'
     | '/portfolio'
+    | '/robots.txt'
     | '/services'
+    | '/sitemap.xml'
     | '/admin/login'
     | '/admin'
   id:
@@ -130,7 +152,9 @@ export interface FileRouteTypes {
     | '/contacts'
     | '/fleet'
     | '/portfolio'
+    | '/robots.txt'
     | '/services'
+    | '/sitemap.xml'
     | '/admin/login'
     | '/admin/'
   fileRoutesById: FileRoutesById
@@ -142,18 +166,34 @@ export interface RootRouteChildren {
   ContactsRoute: typeof ContactsRoute
   FleetRoute: typeof FleetRoute
   PortfolioRoute: typeof PortfolioRoute
+  RobotsDottxtRoute: typeof RobotsDottxtRoute
   ServicesRoute: typeof ServicesRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   AdminLoginRoute: typeof AdminLoginRoute
   AdminIndexRoute: typeof AdminIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/services': {
       id: '/services'
       path: '/services'
       fullPath: '/services'
       preLoaderRoute: typeof ServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/robots.txt': {
+      id: '/robots.txt'
+      path: '/robots.txt'
+      fullPath: '/robots.txt'
+      preLoaderRoute: typeof RobotsDottxtRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/portfolio': {
@@ -222,7 +262,9 @@ const rootRouteChildren: RootRouteChildren = {
   ContactsRoute: ContactsRoute,
   FleetRoute: FleetRoute,
   PortfolioRoute: PortfolioRoute,
+  RobotsDottxtRoute: RobotsDottxtRoute,
   ServicesRoute: ServicesRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   AdminLoginRoute: AdminLoginRoute,
   AdminIndexRoute: AdminIndexRoute,
 }
