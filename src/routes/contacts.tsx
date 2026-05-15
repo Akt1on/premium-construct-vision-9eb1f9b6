@@ -3,6 +3,8 @@ import { motion } from "motion/react";
 import { useState } from "react";
 import { z } from "zod";
 import { Phone, Mail, MapPin, Clock, ArrowUpRight, CheckCircle2 } from "lucide-react";
+import { submitLead } from "@/lib/leads";
+import { toast } from "sonner";
 
 export const Route = createFileRoute("/contacts")({
   head: () => ({
@@ -42,9 +44,20 @@ function ContactsPage() {
     }
     setErrors({});
     setLoading(true);
-    await new Promise((res) => setTimeout(res, 800));
-    setLoading(false);
-    setSent(true);
+    try {
+      await submitLead({
+        source: "contact",
+        name: r.data.name,
+        phone: r.data.phone,
+        message: r.data.message || null,
+      });
+      setSent(true);
+    } catch (err) {
+      toast.error("Не удалось отправить. Попробуйте ещё раз или позвоните нам.");
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (

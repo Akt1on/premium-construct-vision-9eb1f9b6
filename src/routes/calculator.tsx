@@ -1,7 +1,10 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { motion } from "motion/react";
+import { createFileRoute } from "@tanstack/react-router";
+import { motion, AnimatePresence } from "motion/react";
 import { useMemo, useState } from "react";
-import { ArrowUpRight, Calculator as CalcIcon } from "lucide-react";
+import { ArrowUpRight, Calculator as CalcIcon, X, CheckCircle2 } from "lucide-react";
+import { z } from "zod";
+import { submitLead } from "@/lib/leads";
+import { toast } from "sonner";
 
 export const Route = createFileRoute("/calculator")({
   head: () => ({
@@ -30,6 +33,7 @@ function CalculatorPage() {
   const [base, setBase] = useState(true);
   const [curb, setCurb] = useState(false);
   const [marking, setMarking] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const total = useMemo(() => {
     const t = TYPES.find((x) => x.id === typeId)!;
@@ -127,17 +131,109 @@ function CalculatorPage() {
                 <Cell label="Гарантия" value="5 лет" />
               </div>
 
-              <Link to="/contacts" className="mt-8 inline-flex w-full items-center justify-between rounded-sm bg-ember px-6 py-4 font-display text-sm font-bold uppercase tracking-wider text-primary-foreground hover:brightness-110">
+              <button onClick={() => setOpen(true)} className="mt-8 inline-flex w-full items-center justify-between rounded-sm bg-ember px-6 py-4 font-display text-sm font-bold uppercase tracking-wider text-primary-foreground hover:brightness-110">
                 <span>Заказать точный расчёт</span>
                 <ArrowUpRight className="h-5 w-5" />
-              </Link>
+              </button>
 
               <p className="mt-4 text-xs text-muted-foreground">Расчёт является предварительным. Точная цена — после выезда инженера на объект.</p>
             </div>
           </motion.aside>
         </div>
       </div>
+
+      <CalcLeadModal
+        open={open} onClose={() => setOpen(false)}
+        payload={{ area, thickness, typeId, base, curb, marking }}
+        total={total}
+      />
     </div>
+  );
+}
+
+const leadSchema = z.object({
+  name: z.string().trim().min(2, "Минимум 2 символа").max(100),
+  phone: z.string().trim().min(10, "Введите телефон").max(20),
+});
+
+function CalcLeadModal({ open, onClose, payload, total }: {
+  open: boolean; onClose: () => void; payload: Record<string, unknown>; total: number;
+}) {
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [loading, setLoading] = useState(false);
+  const [done, setDone] = useState(false);
+
+  const submit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const r = leadSchema.safeParse({ name, phone });
+    if (!r.success) {
+      const errs: Record<string, string> = {};
+      r.error.issues.forEach((i) => { errs[String(i.path[0])] = i.message; });
+      setErrors(errs);
+      return;
+    }
+    setErrors({});
+    setLoading(true);
+    try {
+      await submitLead({
+        source: "calculator", name: r.data.name, phone: r.data.phone,
+        estimated_cost: total, payload: payload as never,
+      });
+      setDone(true);
+    } catch (err) {
+      toast.error("Не удалось отправить. Попробуйте ещё раз.");
+      console.error(err);
+    } finally { setLoading(false); }
+  };
+
+  return (
+    <AnimatePresence>
+      {open && (
+        <motion.div
+          initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+          className="fixed inset-0 z-50 grid place-items-center bg-background/80 p-6 backdrop-blur"
+          onClick={onClose}
+        >
+          <motion.div
+            initial={{ scale: 0.95, y: 20 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.95, y: 20 }}
+            className="relative w-full max-w-md overflow-hidden rounded-sm border border-white/10 bg-card p-8"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button onClick={onClose} className="absolute right-3 top-3 grid h-8 w-8 place-items-center text-muted-foreground hover:text-foreground">
+              <X className="h-4 w-4" />
+            </button>
+            {done ? (
+              <div className="flex flex-col items-center py-8 text-center">
+                <CheckCircle2 className="h-14 w-14 text-ember" strokeWidth={1.5} />
+                <h3 className="mt-4 text-display text-2xl">Заявка принята</h3>
+                <p className="mt-2 text-sm text-muted-foreground">Перезвоним в течение 15 минут с точным расчётом.</p>
+              </div>
+            ) : (
+              <form onSubmit={submit} className="space-y-5">
+                <div className="font-mono text-[11px] uppercase tracking-[0.3em] text-ember">/ точный расчёт</div>
+                <h3 className="text-display text-2xl font-black">Заявка на расчёт<br /><span className="text-muted-foreground text-base font-normal">≈ {total.toLocaleString("ru-RU")} ₽</span></h3>
+                <div>
+                  <label className="mb-2 block font-mono text-[10px] uppercase tracking-widest text-muted-foreground">Имя</label>
+                  <input value={name} onChange={(e) => setName(e.target.value)} className={`w-full rounded-sm border bg-background px-4 py-3 focus:outline-none ${errors.name ? "border-destructive" : "border-white/10 focus:border-ember"}`} />
+                  {errors.name && <div className="mt-1 font-mono text-[10px] text-destructive">{errors.name}</div>}
+                </div>
+                <div>
+                  <label className="mb-2 block font-mono text-[10px] uppercase tracking-widest text-muted-foreground">Телефон</label>
+                  <input value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="+7 (___) ___-__-__" className={`w-full rounded-sm border bg-background px-4 py-3 focus:outline-none ${errors.phone ? "border-destructive" : "border-white/10 focus:border-ember"}`} />
+                  {errors.phone && <div className="mt-1 font-mono text-[10px] text-destructive">{errors.phone}</div>}
+                </div>
+                <button type="submit" disabled={loading} className="inline-flex w-full items-center justify-between rounded-sm bg-ember px-6 py-4 font-display text-sm font-bold uppercase tracking-wider text-primary-foreground hover:brightness-110 disabled:opacity-60">
+                  <span>{loading ? "Отправка..." : "Отправить заявку"}</span>
+                  <ArrowUpRight className="h-5 w-5" />
+                </button>
+              </form>
+            )}
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 }
 
