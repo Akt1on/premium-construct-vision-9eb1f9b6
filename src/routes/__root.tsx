@@ -14,6 +14,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { ScrollProgress } from "@/components/ScrollProgress";
 import { Cursor } from "@/components/Cursor";
 import { WhatsAppFab } from "@/components/WhatsAppFab";
+import { Toaster } from "sonner";
 
 function NotFoundComponent() {
   return (
