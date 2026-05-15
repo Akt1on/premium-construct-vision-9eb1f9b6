@@ -3,6 +3,8 @@ import { motion } from "motion/react";
 import { useState } from "react";
 import { z } from "zod";
 import { Phone, Mail, MapPin, Clock, ArrowUpRight, CheckCircle2 } from "lucide-react";
+import { submitLead } from "@/lib/leads";
+import { toast } from "sonner";
 
 export const Route = createFileRoute("/contacts")({
   head: () => ({
