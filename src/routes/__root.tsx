@@ -126,6 +126,7 @@ function RootComponent() {
       </main>
       <SiteFooter />
       <WhatsAppFab />
+      <Toaster theme="dark" position="bottom-center" />
     </QueryClientProvider>
   );
 }
