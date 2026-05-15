@@ -33,6 +33,7 @@ function CalculatorPage() {
   const [base, setBase] = useState(true);
   const [curb, setCurb] = useState(false);
   const [marking, setMarking] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const total = useMemo(() => {
     const t = TYPES.find((x) => x.id === typeId)!;
