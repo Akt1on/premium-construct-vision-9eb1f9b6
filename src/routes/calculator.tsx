@@ -130,10 +130,10 @@ function CalculatorPage() {
                 <Cell label="Гарантия" value="5 лет" />
               </div>
 
-              <Link to="/contacts" className="mt-8 inline-flex w-full items-center justify-between rounded-sm bg-ember px-6 py-4 font-display text-sm font-bold uppercase tracking-wider text-primary-foreground hover:brightness-110">
+              <button onClick={() => setOpen(true)} className="mt-8 inline-flex w-full items-center justify-between rounded-sm bg-ember px-6 py-4 font-display text-sm font-bold uppercase tracking-wider text-primary-foreground hover:brightness-110">
                 <span>Заказать точный расчёт</span>
                 <ArrowUpRight className="h-5 w-5" />
-              </Link>
+              </button>
 
               <p className="mt-4 text-xs text-muted-foreground">Расчёт является предварительным. Точная цена — после выезда инженера на объект.</p>
             </div>
