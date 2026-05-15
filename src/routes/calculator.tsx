@@ -1,7 +1,10 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { motion } from "motion/react";
+import { createFileRoute } from "@tanstack/react-router";
+import { motion, AnimatePresence } from "motion/react";
 import { useMemo, useState } from "react";
-import { ArrowUpRight, Calculator as CalcIcon } from "lucide-react";
+import { ArrowUpRight, Calculator as CalcIcon, X, CheckCircle2 } from "lucide-react";
+import { z } from "zod";
+import { submitLead } from "@/lib/leads";
+import { toast } from "sonner";
 
 export const Route = createFileRoute("/calculator")({
   head: () => ({
