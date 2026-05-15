@@ -44,9 +44,20 @@ function ContactsPage() {
     }
     setErrors({});
     setLoading(true);
-    await new Promise((res) => setTimeout(res, 800));
-    setLoading(false);
-    setSent(true);
+    try {
+      await submitLead({
+        source: "contact",
+        name: r.data.name,
+        phone: r.data.phone,
+        message: r.data.message || null,
+      });
+      setSent(true);
+    } catch (err) {
+      toast.error("Не удалось отправить. Попробуйте ещё раз или позвоните нам.");
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
