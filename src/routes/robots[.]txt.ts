@@ -5,7 +5,7 @@ Allow: /
 Disallow: /admin
 Disallow: /admin/login
 
-Sitemap: https://premiumstroe.ru/sitemap.xml
+Sitemap: https://permasfalt59.ru/sitemap.xml
 `;
 
 export const Route = createFileRoute("/robots.txt")({

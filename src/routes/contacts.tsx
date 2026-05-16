@@ -9,13 +9,13 @@ import { toast } from "sonner";
 export const Route = createFileRoute("/contacts")({
   head: () => ({
     meta: [
-      { title: "Контакты — Премиум Строй · Москва" },
-      { name: "description", content: "Свяжитесь с нами: телефон, email, адрес офиса. Бесплатный выезд инженера и смета за 24 часа." },
-      { property: "og:title", content: "Контакты Премиум Строй" },
-      { property: "og:description", content: "Звоните, пишите, приезжайте. Работаем 24/7." },
-      { property: "og:url", content: "/contacts" },
+      { title: "Контакты — Пермь Асфальт 59 в Перми" },
+      { name: "description", content: "Контакты компании Пермь Асфальт 59 в Перми: телефон, email, адрес. Бесплатный выезд инженера и смета за 24 часа." },
+      { property: "og:title", content: "Контакты — Пермь Асфальт 59 в Перми" },
+      { property: "og:description", content: "Звоните, пишите, приезжайте. Работаем 24/7 в Перми и Пермском крае." },
+      { property: "og:url", content: "https://permasfalt59.ru/contacts" },
     ],
-    links: [{ rel: "canonical", href: "/contacts" }],
+    links: [{ rel: "canonical", href: "https://permasfalt59.ru/contacts" }],
   }),
   component: ContactsPage,
 });
@@ -68,16 +68,16 @@ function ContactsPage() {
       <div className="mx-auto max-w-[1500px] px-6">
         <div className="font-mono text-[11px] uppercase tracking-[0.3em] text-ember">/ контакты</div>
         <h1 className="mt-4 text-display text-[clamp(3rem,10vw,9rem)] leading-[0.85]">
-          <span className="block">Давайте</span>
-          <span className="block translate-x-[6vw]"><span className="bg-gradient-to-r from-foreground to-ember bg-clip-text text-transparent">строить.</span></span>
+          <span className="block">Контакты —</span>
+          <span className="block translate-x-[6vw]"><span className="bg-gradient-to-r from-foreground to-ember bg-clip-text text-transparent">Пермь Асфальт 59 в&nbsp;Перми.</span></span>
         </h1>
 
         <div className="mt-20 grid gap-12 lg:grid-cols-12">
           <div className="space-y-8 lg:col-span-5">
             {[
-              { i: Phone, l: "Телефон · 24/7", v: "+7 495 123-45-67", h: "tel:+74951234567" },
-              { i: Mail, l: "Email", v: "info@premiumstroe.ru", h: "mailto:info@premiumstroe.ru" },
-              { i: MapPin, l: "Офис", v: "Москва, ул. Промышленная, 12, оф. 408" },
+              { i: Phone, l: "Телефон · 24/7", v: "+7 (342) 000-00-00", h: "tel:+73420000000" },
+              { i: Mail, l: "Email", v: "info@permasfalt59.ru", h: "mailto:info@permasfalt59.ru" },
+              { i: MapPin, l: "Офис", v: "г. Пермь, Пермский край" },
               { i: Clock, l: "График", v: "Пн–Вс · круглосуточно" },
             ].map((c) => (
               <a
@@ -142,8 +142,8 @@ function ContactsPage() {
 
         <div className="mt-20 overflow-hidden rounded-sm border border-white/10">
           <iframe
-            title="Карта офиса"
-            src="https://yandex.ru/map-widget/v1/?ll=37.617%2C55.755&z=11"
+            title="Карта офиса в Перми"
+            src="https://yandex.ru/map-widget/v1/?ll=56.2502%2C58.0105&z=11"
             className="h-[480px] w-full border-0 grayscale-[0.6] contrast-125"
             loading="lazy"
           />

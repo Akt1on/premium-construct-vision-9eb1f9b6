@@ -10,13 +10,13 @@ import truck from "@/assets/truck.jpg";
 export const Route = createFileRoute("/fleet")({
   head: () => ({
     meta: [
-      { title: "Парк техники — Премиум Строй · Аренда спецтехники в Москве" },
-      { name: "description", content: "87 единиц собственной спецтехники: экскаваторы, асфальтоукладчики, катки, самосвалы, погрузчики. Аренда с оператором 24/7." },
-      { property: "og:title", content: "Парк техники Премиум Строй" },
-      { property: "og:description", content: "87 машин. Все с операторами. Доставка на объект." },
-      { property: "og:url", content: "/fleet" },
+      { title: "Аренда спецтехники в Перми и Пермском крае | Пермь Асфальт 59" },
+      { name: "description", content: "Аренда спецтехники в Перми: экскаваторы, асфальтоукладчики, катки, самосвалы, погрузчики. 87 единиц собственной техники, с оператором, 24/7." },
+      { property: "og:title", content: "Парк техники Пермь Асфальт 59 в Перми" },
+      { property: "og:description", content: "87 машин в Перми. Все с операторами. Доставка на объект." },
+      { property: "og:url", content: "https://permasfalt59.ru/fleet" },
     ],
-    links: [{ rel: "canonical", href: "/fleet" }],
+    links: [{ rel: "canonical", href: "https://permasfalt59.ru/fleet" }],
   }),
   component: FleetPage,
 });
@@ -54,11 +54,11 @@ function FleetPage() {
         <div className="mx-auto max-w-[1500px] px-6">
           <div className="font-mono text-[11px] uppercase tracking-[0.3em] text-ember">/ парк техники</div>
           <h1 className="mt-4 text-display text-[clamp(3rem,10vw,9rem)]">
-            <span className="block">87 машин.</span>
-            <span className="block translate-x-[6vw]"><span className="bg-gradient-to-r from-foreground to-ember bg-clip-text text-transparent">Готовы к работе.</span></span>
+            <span className="block">Аренда спецтехники</span>
+            <span className="block translate-x-[6vw]"><span className="bg-gradient-to-r from-foreground to-ember bg-clip-text text-transparent">в&nbsp;Перми и крае.</span></span>
           </h1>
           <p className="mt-10 max-w-2xl text-lg text-muted-foreground md:text-xl">
-            Собственный парк современной техники. Все машины проходят ежедневный осмотр. Операторы — в штате с опытом от 7 лет.
+            87 единиц собственной техники в Перми. Все машины проходят ежедневный осмотр. Операторы — в штате с опытом от 7 лет. Работаем по всему Пермскому краю.
           </p>
         </div>
       </section>

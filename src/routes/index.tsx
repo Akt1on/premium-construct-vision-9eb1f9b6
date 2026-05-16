@@ -27,25 +27,32 @@ import { Counter } from "@/components/Counter";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Премиум Строй — Асфальтирование, благоустройство, спецтехника в Москве" },
-      { name: "description", content: "Асфальтирование дворов, парковок и магистралей. Благоустройство, земляные работы, аренда спецтехники. Собственный парк, договор, гарантия до 5 лет." },
-      { property: "og:title", content: "Премиум Строй — строим будущее. Профессионально. Быстро. Навсегда." },
-      { property: "og:description", content: "15+ лет опыта · собственная техника · договор · гарантия 5 лет." },
+      { title: "Асфальтирование в Перми | Пермь Асфальт 59 — от 300 ₽/кв.м" },
+      { name: "description", content: "Асфальтирование дорог и территорий в Перми и Пермском крае от 300 ₽/кв.м. Работаем с 2010 года. Гарантия 3 года. Бесплатный выезд на объект." },
+      { property: "og:title", content: "Асфальтирование в Перми и Пермском крае — Пермь Асфальт 59" },
+      { property: "og:description", content: "С 2010 года · собственная техника · договор · гарантия 3 года · от 300 ₽/кв.м." },
       { property: "og:image", content: "/og.jpg" },
       { property: "og:type", content: "website" },
     ],
-    links: [{ rel: "canonical", href: "/" }],
+    links: [{ rel: "canonical", href: "https://permasfalt59.ru/" }],
     scripts: [{
       type: "application/ld+json",
       children: JSON.stringify({
         "@context": "https://schema.org",
         "@type": "LocalBusiness",
-        name: "Премиум Строй",
-        url: "https://premiumstroe.ru",
-        telephone: "+7 495 123-45-67",
-        address: { "@type": "PostalAddress", addressLocality: "Москва", addressCountry: "RU" },
+        name: "Пермь Асфальт 59",
+        url: "https://permasfalt59.ru",
+        telephone: "+7-342-000-0000",
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Пермь",
+          addressRegion: "Пермский край",
+          addressCountry: "RU",
+        },
+        geo: { "@type": "GeoCoordinates", latitude: 58.0105, longitude: 56.2502 },
+        areaServed: ["Пермь", "Пермский край"],
+        openingHours: "Mo-Su 00:00-24:00",
         priceRange: "$$",
-        areaServed: "Москва и Московская область",
       }),
     }],
   }),
@@ -53,11 +60,16 @@ export const Route = createFileRoute("/")({
 });
 
 const SERVICES = [
-  { icon: Layers, title: "Асфальтирование", desc: "Дворы, парковки, дороги, магистрали. Укладка от 50 м² с гарантией.", tag: "01" },
-  { icon: Mountain, title: "Благоустройство", desc: "Комплексные работы под ключ: тротуары, бордюры, озеленение, освещение.", tag: "02" },
-  { icon: Wrench, title: "Земляные работы", desc: "Котлованы, траншеи, планировка, разработка любой сложности.", tag: "03" },
-  { icon: Truck, title: "Аренда спецтехники", desc: "Экскаваторы, катки, самосвалы, асфальтоукладчики. С оператором.", tag: "04" },
-  { icon: Package, title: "Сыпучие материалы", desc: "Щебень, песок, торф, грунт, земля. Доставка от 5 до 50 тонн.", tag: "05" },
+  { icon: Layers, title: "Асфальтирование", desc: "Дворы, парковки, дороги, магистрали. Укладка от 50 м². От 300 ₽/кв.м.", tag: "01" },
+  { icon: Mountain, title: "Укладка тротуарной плитки", desc: "Мощение дорог, площадок, отмостков, зон отдыха. От 450 ₽/кв.м.", tag: "02" },
+  { icon: Package, title: "Вывоз строительного мусора", desc: "Оперативный вывоз отходов с объекта. От 200 ₽/кв.м.", tag: "03" },
+  { icon: Truck, title: "Аренда спецтехники", desc: "Самосвалы, катки, экскаваторы, погрузчики, кран-борт. По договору.", tag: "04" },
+  { icon: Wrench, title: "Земляные работы", desc: "Механизированная копка, газоны, бордюры. От 120 ₽/кв.м.", tag: "05" },
+  { icon: Package, title: "Доставка нерудных материалов", desc: "ПГС, щебень, песок, гравий, чернозём, торф. От 200 ₽/т.", tag: "06" },
+  { icon: Wrench, title: "Демонтаж зданий и сооружений", desc: "Снос и демонтажные работы любой сложности. От 50 ₽/кв.м.", tag: "07" },
+  { icon: Truck, title: "Уборка и вывоз снега", desc: "Техника для уборки и вывоз снега в Перми. По договору.", tag: "08" },
+  { icon: Mountain, title: "Кронирование деревьев", desc: "Профессиональная обрезка и формирование кроны. От 1450 ₽/час.", tag: "09" },
+  { icon: Package, title: "Нерудные материалы", desc: "Песок, щебень, ПГС, чернозём, торф, бутовый камень. По договору.", tag: "10" },
 ] as const;
 
 function HomePage() {
@@ -94,20 +106,20 @@ function Hero() {
       <motion.div style={{ opacity }} className="relative z-10 mx-auto flex min-h-[100svh] max-w-[1500px] flex-col justify-end px-6 pb-20 pt-40">
         <div className="flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.3em] text-muted-foreground">
           <span className="h-px w-10 bg-ember" />
-          <span>est. 2009 · Москва</span>
+          <span>est. 2010 · Пермь</span>
           <span className="text-ember">●</span>
           <span>15+ лет на рынке</span>
         </div>
 
         <h1 className="text-display mt-6 text-[clamp(3rem,11vw,11rem)] text-foreground">
-          <span className="block">Мы&nbsp;строим</span>
+          <span className="block">Асфальтирование</span>
           <motion.span
             initial={{ opacity: 0, x: -40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.9, delay: 0.2 }}
             className="block translate-x-[6vw]"
           >
-            <span className="bg-gradient-to-r from-foreground via-foreground to-ember bg-clip-text text-transparent">будущее.</span>
+            <span className="bg-gradient-to-r from-foreground via-foreground to-ember bg-clip-text text-transparent">в&nbsp;Перми.</span>
           </motion.span>
           <motion.span
             initial={{ opacity: 0 }}
@@ -117,7 +129,7 @@ function Hero() {
           >
             <span className="text-foreground/90">Профессионально.</span>
             <span className="text-steel">Быстро.</span>
-            <span className="text-ember">Навсегда.</span>
+            <span className="text-ember">Надёжно.</span>
           </motion.span>
         </h1>
 
@@ -145,7 +157,7 @@ function Hero() {
         </div>
 
         <div className="pointer-events-none absolute right-6 top-40 hidden text-right md:block">
-          <div className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">N 55°45′ E 37°37′</div>
+          <div className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">N 58°00′ E 56°15′</div>
           <div className="mt-1 font-mono text-[11px] uppercase tracking-widest text-ember">REC ● LIVE</div>
         </div>
 
@@ -161,9 +173,9 @@ function Hero() {
 function Stats() {
   const items = [
     { v: 2400, s: "+", l: "Объектов сдано" },
-    { v: 15, s: " лет", l: "На рынке" },
+    { v: 15, s: " лет", l: "На рынке в Перми" },
     { v: 87, s: "", l: "Единиц техники" },
-    { v: 5, s: " лет", l: "Гарантии" },
+    { v: 3, s: " года", l: "Гарантии" },
   ];
   return (
     <section className="relative border-y border-white/5 bg-card/40 bg-noise">
@@ -189,16 +201,16 @@ function Services() {
       <div className="mx-auto max-w-[1500px] px-6">
         <div className="grid gap-12 md:grid-cols-12">
           <div className="md:col-span-5">
-            <div className="font-mono text-[11px] uppercase tracking-[0.3em] text-ember">/ 02 — услуги</div>
+            <div className="font-mono text-[11px] uppercase tracking-[0.3em] text-ember">/ 02 — услуги в Перми</div>
             <h2 className="mt-4 text-display text-[clamp(2.5rem,6vw,5.5rem)]">
-              Полный цикл.<br />
-              <span className="text-muted-foreground">От котлована</span><br />
-              <span className="text-ember">до сдачи объекта.</span>
+              10 направлений.<br />
+              <span className="text-muted-foreground">От асфальта</span><br />
+              <span className="text-ember">до благоустройства.</span>
             </h2>
           </div>
           <div className="md:col-span-7">
             <p className="text-lg text-muted-foreground md:text-xl">
-              Собственный парк техники, штат опытных инженеров и асфальтобетонный завод-партнёр позволяют нам выполнять работы любого масштаба — от двора частного дома до участка федеральной трассы.
+              Собственный парк техники и команда инженеров позволяют выполнять работы любого масштаба в Перми и Пермском крае — от частного двора до промышленных территорий и участков краевых дорог.
             </p>
           </div>
         </div>
@@ -332,7 +344,7 @@ function Testimonials() {
   ];
   const trust = [
     { i: Shield, t: "Договор", d: "По всем работам" },
-    { i: Award, t: "Гарантия 5 лет", d: "На покрытие" },
+    { i: Award, t: "Гарантия 3 года", d: "На покрытие" },
     { i: Clock, t: "Сроки", d: "Фиксируем в договоре" },
     { i: CheckCircle2, t: "ISO 9001", d: "Контроль качества" },
   ];

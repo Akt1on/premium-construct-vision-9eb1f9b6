@@ -12,16 +12,16 @@ export function SiteFooter() {
               <div className="absolute inset-0 rotate-45 bg-ember" />
               <div className="absolute inset-[3px] rotate-45 bg-background" />
             </div>
-            <div className="font-display text-xl font-black">ПРЕМИУМ СТРОЙ</div>
+            <div className="font-display text-xl font-black">ПЕРМЬ АСФАЛЬТ 59</div>
           </div>
           <p className="mt-6 max-w-md text-sm text-muted-foreground">
-            Асфальтирование, благоустройство и земляные работы под ключ.
-            Собственный парк техники. Договор. Гарантия до 5 лет.
+            Асфальтирование, благоустройство и земляные работы в Перми и Пермском крае.
+            Собственный парк техники. Договор. Гарантия до 3 лет.
           </p>
           <div className="mt-8 flex flex-wrap gap-3 font-mono text-xs uppercase tracking-wider text-muted-foreground">
-            <span className="rounded-sm border border-white/10 px-3 py-2">ОГРН · 1097746111111</span>
+            <span className="rounded-sm border border-white/10 px-3 py-2">с 2010 года</span>
             <span className="rounded-sm border border-white/10 px-3 py-2">СРО · допуск</span>
-            <span className="rounded-sm border border-white/10 px-3 py-2">ISO 9001</span>
+            <span className="rounded-sm border border-white/10 px-3 py-2">Пермский край</span>
           </div>
         </div>
         <div>
@@ -29,6 +29,7 @@ export function SiteFooter() {
           <ul className="mt-4 space-y-2 text-sm">
             {[
               { to: "/services", l: "Услуги" },
+              { to: "/prices", l: "Цены" },
               { to: "/fleet", l: "Спецтехника" },
               { to: "/portfolio", l: "Портфолио" },
               { to: "/calculator", l: "Калькулятор" },
@@ -44,16 +45,16 @@ export function SiteFooter() {
         <div>
           <div className="font-display text-xs font-bold uppercase tracking-widest text-ember">Контакты</div>
           <ul className="mt-4 space-y-3 text-sm">
-            <li className="flex items-start gap-3"><Phone className="mt-0.5 h-4 w-4 text-steel" /><a href="tel:+74951234567">+7 (495) 123-45-67</a></li>
-            <li className="flex items-start gap-3"><Mail className="mt-0.5 h-4 w-4 text-steel" /><a href="mailto:info@premiumstroe.ru">info@premiumstroe.ru</a></li>
-            <li className="flex items-start gap-3"><MapPin className="mt-0.5 h-4 w-4 text-steel" /><span className="text-muted-foreground">Москва, МКАД 24 км, БЦ «Премиум», 5 этаж</span></li>
+            <li className="flex items-start gap-3"><Phone className="mt-0.5 h-4 w-4 text-steel" /><a href="tel:+73420000000">+7 (342) 000-00-00</a></li>
+            <li className="flex items-start gap-3"><Mail className="mt-0.5 h-4 w-4 text-steel" /><a href="mailto:info@permasfalt59.ru">info@permasfalt59.ru</a></li>
+            <li className="flex items-start gap-3"><MapPin className="mt-0.5 h-4 w-4 text-steel" /><span className="text-muted-foreground">г. Пермь, Пермский край</span></li>
           </ul>
         </div>
       </div>
       <div className="border-t border-white/5">
         <div className="mx-auto flex max-w-[1500px] flex-wrap items-center justify-between gap-3 px-6 py-5 font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
-          <span>© {new Date().getFullYear()} Премиум Строй. Все права защищены.</span>
-          <span>Работаем 24/7 · Москва и область</span>
+          <span>© {new Date().getFullYear()} Пермь Асфальт 59. Все права защищены.</span>
+          <span>Работаем 24/7 · Пермь и Пермский край</span>
         </div>
       </div>
     </footer>

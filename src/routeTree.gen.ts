@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
+import { Route as PricesRouteImport } from './routes/prices'
 import { Route as PortfolioRouteImport } from './routes/portfolio'
 import { Route as FleetRouteImport } from './routes/fleet'
 import { Route as ContactsRouteImport } from './routes/contacts'
@@ -34,6 +35,11 @@ const ServicesRoute = ServicesRouteImport.update({
 const RobotsDottxtRoute = RobotsDottxtRouteImport.update({
   id: '/robots.txt',
   path: '/robots.txt',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PricesRoute = PricesRouteImport.update({
+  id: '/prices',
+  path: '/prices',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PortfolioRoute = PortfolioRouteImport.update({
@@ -84,6 +90,7 @@ export interface FileRoutesByFullPath {
   '/contacts': typeof ContactsRoute
   '/fleet': typeof FleetRoute
   '/portfolio': typeof PortfolioRoute
+  '/prices': typeof PricesRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -97,6 +104,7 @@ export interface FileRoutesByTo {
   '/contacts': typeof ContactsRoute
   '/fleet': typeof FleetRoute
   '/portfolio': typeof PortfolioRoute
+  '/prices': typeof PricesRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -111,6 +119,7 @@ export interface FileRoutesById {
   '/contacts': typeof ContactsRoute
   '/fleet': typeof FleetRoute
   '/portfolio': typeof PortfolioRoute
+  '/prices': typeof PricesRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -126,6 +135,7 @@ export interface FileRouteTypes {
     | '/contacts'
     | '/fleet'
     | '/portfolio'
+    | '/prices'
     | '/robots.txt'
     | '/services'
     | '/sitemap.xml'
@@ -139,6 +149,7 @@ export interface FileRouteTypes {
     | '/contacts'
     | '/fleet'
     | '/portfolio'
+    | '/prices'
     | '/robots.txt'
     | '/services'
     | '/sitemap.xml'
@@ -152,6 +163,7 @@ export interface FileRouteTypes {
     | '/contacts'
     | '/fleet'
     | '/portfolio'
+    | '/prices'
     | '/robots.txt'
     | '/services'
     | '/sitemap.xml'
@@ -166,6 +178,7 @@ export interface RootRouteChildren {
   ContactsRoute: typeof ContactsRoute
   FleetRoute: typeof FleetRoute
   PortfolioRoute: typeof PortfolioRoute
+  PricesRoute: typeof PricesRoute
   RobotsDottxtRoute: typeof RobotsDottxtRoute
   ServicesRoute: typeof ServicesRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
@@ -194,6 +207,13 @@ declare module '@tanstack/react-router' {
       path: '/robots.txt'
       fullPath: '/robots.txt'
       preLoaderRoute: typeof RobotsDottxtRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/prices': {
+      id: '/prices'
+      path: '/prices'
+      fullPath: '/prices'
+      preLoaderRoute: typeof PricesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/portfolio': {
@@ -262,6 +282,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactsRoute: ContactsRoute,
   FleetRoute: FleetRoute,
   PortfolioRoute: PortfolioRoute,
+  PricesRoute: PricesRoute,
   RobotsDottxtRoute: RobotsDottxtRoute,
   ServicesRoute: ServicesRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
