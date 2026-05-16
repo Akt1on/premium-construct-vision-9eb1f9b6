@@ -7,6 +7,7 @@ import { Magnetic } from "./Magnetic";
 const NAV = [
   { to: "/", label: "Главная" },
   { to: "/services", label: "Услуги" },
+  { to: "/prices", label: "Цены" },
   { to: "/fleet", label: "Спецтехника" },
   { to: "/portfolio", label: "Портфолио" },
   { to: "/calculator", label: "Калькулятор" },
