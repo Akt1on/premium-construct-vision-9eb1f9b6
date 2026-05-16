@@ -27,25 +27,32 @@ import { Counter } from "@/components/Counter";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Премиум Строй — Асфальтирование, благоустройство, спецтехника в Москве" },
-      { name: "description", content: "Асфальтирование дворов, парковок и магистралей. Благоустройство, земляные работы, аренда спецтехники. Собственный парк, договор, гарантия до 5 лет." },
-      { property: "og:title", content: "Премиум Строй — строим будущее. Профессионально. Быстро. Навсегда." },
-      { property: "og:description", content: "15+ лет опыта · собственная техника · договор · гарантия 5 лет." },
+      { title: "Асфальтирование в Перми | Пермь Асфальт 59 — от 300 ₽/кв.м" },
+      { name: "description", content: "Асфальтирование дорог и территорий в Перми и Пермском крае от 300 ₽/кв.м. Работаем с 2010 года. Гарантия 3 года. Бесплатный выезд на объект." },
+      { property: "og:title", content: "Асфальтирование в Перми и Пермском крае — Пермь Асфальт 59" },
+      { property: "og:description", content: "С 2010 года · собственная техника · договор · гарантия 3 года · от 300 ₽/кв.м." },
       { property: "og:image", content: "/og.jpg" },
       { property: "og:type", content: "website" },
     ],
-    links: [{ rel: "canonical", href: "/" }],
+    links: [{ rel: "canonical", href: "https://permasfalt59.ru/" }],
     scripts: [{
       type: "application/ld+json",
       children: JSON.stringify({
         "@context": "https://schema.org",
         "@type": "LocalBusiness",
-        name: "Премиум Строй",
-        url: "https://premiumstroe.ru",
-        telephone: "+7 495 123-45-67",
-        address: { "@type": "PostalAddress", addressLocality: "Москва", addressCountry: "RU" },
+        name: "Пермь Асфальт 59",
+        url: "https://permasfalt59.ru",
+        telephone: "+7-342-000-0000",
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Пермь",
+          addressRegion: "Пермский край",
+          addressCountry: "RU",
+        },
+        geo: { "@type": "GeoCoordinates", latitude: 58.0105, longitude: 56.2502 },
+        areaServed: ["Пермь", "Пермский край"],
+        openingHours: "Mo-Su 00:00-24:00",
         priceRange: "$$",
-        areaServed: "Москва и Московская область",
       }),
     }],
   }),
@@ -53,11 +60,16 @@ export const Route = createFileRoute("/")({
 });
 
 const SERVICES = [
-  { icon: Layers, title: "Асфальтирование", desc: "Дворы, парковки, дороги, магистрали. Укладка от 50 м² с гарантией.", tag: "01" },
-  { icon: Mountain, title: "Благоустройство", desc: "Комплексные работы под ключ: тротуары, бордюры, озеленение, освещение.", tag: "02" },
-  { icon: Wrench, title: "Земляные работы", desc: "Котлованы, траншеи, планировка, разработка любой сложности.", tag: "03" },
-  { icon: Truck, title: "Аренда спецтехники", desc: "Экскаваторы, катки, самосвалы, асфальтоукладчики. С оператором.", tag: "04" },
-  { icon: Package, title: "Сыпучие материалы", desc: "Щебень, песок, торф, грунт, земля. Доставка от 5 до 50 тонн.", tag: "05" },
+  { icon: Layers, title: "Асфальтирование", desc: "Дворы, парковки, дороги, магистрали. Укладка от 50 м². От 300 ₽/кв.м.", tag: "01" },
+  { icon: Mountain, title: "Укладка тротуарной плитки", desc: "Мощение дорог, площадок, отмостков, зон отдыха. От 450 ₽/кв.м.", tag: "02" },
+  { icon: Package, title: "Вывоз строительного мусора", desc: "Оперативный вывоз отходов с объекта. От 200 ₽/кв.м.", tag: "03" },
+  { icon: Truck, title: "Аренда спецтехники", desc: "Самосвалы, катки, экскаваторы, погрузчики, кран-борт. По договору.", tag: "04" },
+  { icon: Wrench, title: "Земляные работы", desc: "Механизированная копка, газоны, бордюры. От 120 ₽/кв.м.", tag: "05" },
+  { icon: Package, title: "Доставка нерудных материалов", desc: "ПГС, щебень, песок, гравий, чернозём, торф. От 200 ₽/т.", tag: "06" },
+  { icon: Wrench, title: "Демонтаж зданий и сооружений", desc: "Снос и демонтажные работы любой сложности. От 50 ₽/кв.м.", tag: "07" },
+  { icon: Truck, title: "Уборка и вывоз снега", desc: "Техника для уборки и вывоз снега в Перми. По договору.", tag: "08" },
+  { icon: Mountain, title: "Кронирование деревьев", desc: "Профессиональная обрезка и формирование кроны. От 1450 ₽/час.", tag: "09" },
+  { icon: Package, title: "Нерудные материалы", desc: "Песок, щебень, ПГС, чернозём, торф, бутовый камень. По договору.", tag: "10" },
 ] as const;
 
 function HomePage() {
