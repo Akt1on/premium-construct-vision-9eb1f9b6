@@ -7,28 +7,28 @@ import texture from "@/assets/texture.jpg";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "О компании — Премиум Строй · 15 лет на рынке" },
-      { name: "description", content: "История, команда, ценности и сертификаты компании Премиум Строй. С 2009 года строим дороги и благоустраиваем города." },
-      { property: "og:title", content: "О компании Премиум Строй" },
-      { property: "og:description", content: "15 лет, 2400+ объектов, 87 машин, 120 человек в команде." },
-      { property: "og:url", content: "/about" },
+      { title: "О компании — Пермь Асфальт 59 · с 2010 года в Перми" },
+      { name: "description", content: "История, команда, ценности и сертификаты Пермь Асфальт 59. С 2010 года выполняем работы по асфальтированию и благоустройству в Перми и Пермском крае." },
+      { property: "og:title", content: "О компании Пермь Асфальт 59 в Перми" },
+      { property: "og:description", content: "15 лет в Перми. 2400+ объектов. 87 машин. 120 человек в команде." },
+      { property: "og:url", content: "https://permasfalt59.ru/about" },
     ],
-    links: [{ rel: "canonical", href: "/about" }],
+    links: [{ rel: "canonical", href: "https://permasfalt59.ru/about" }],
   }),
   component: AboutPage,
 });
 
 const TIMELINE = [
-  { y: "2009", t: "Старт", d: "Основана в Москве. Первый контракт — двор школы №1245." },
-  { y: "2013", t: "Свой парк", d: "Купили первые 5 единиц техники. Перестали зависеть от подрядчиков." },
-  { y: "2017", t: "Крупные объекты", d: "Вышли на рынок коммерческих парковок и логистических комплексов." },
-  { y: "2020", t: "Магистрали", d: "Допуск к работам на федеральных трассах. Реконструкция М-7." },
-  { y: "2024", t: "87 машин · 2400 объектов", d: "Один из крупнейших независимых подрядчиков Москвы и МО." },
+  { y: "2010", t: "Старт в Перми", d: "Основана в Перми. Первый контракт — асфальтирование двора школы." },
+  { y: "2013", t: "Свой парк", d: "Купили первые единицы техники. Перестали зависеть от подрядчиков." },
+  { y: "2017", t: "Крупные объекты", d: "Вышли на рынок коммерческих парковок и логистических комплексов Перми." },
+  { y: "2020", t: "Краевые дороги", d: "Допуск к работам на дорогах Пермского края." },
+  { y: "2025", t: "87 машин · 2400 объектов", d: "Один из крупнейших независимых подрядчиков Перми и Пермского края." },
 ];
 
 const VALUES = [
   { i: Shield, t: "Слово важнее подписи", d: "Мы не подписываем то, что не сможем сделать. И делаем больше, чем подписали." },
-  { i: Award, t: "Качество — это не опция", d: "Гарантия 5 лет на любое покрытие. Своя лаборатория контроля." },
+  { i: Award, t: "Качество — это не опция", d: "Гарантия 3 года на любое покрытие. Контроль качества на каждом этапе." },
   { i: Users, t: "Команда, а не текучка", d: "Средний стаж сотрудника — 7 лет. Операторов знаем по именам." },
   { i: Building2, t: "Полный цикл", d: "От первого замера до последнего бордюра — без субподрядов." },
 ];
@@ -44,11 +44,11 @@ function AboutPage() {
         <div className="mx-auto max-w-[1500px] px-6">
           <div className="font-mono text-[11px] uppercase tracking-[0.3em] text-ember">/ о компании</div>
           <h1 className="mt-4 text-display text-[clamp(3rem,10vw,9rem)] leading-[0.85]">
-            <span className="block">Не подрядчик.</span>
-            <span className="block translate-x-[6vw]"><span className="bg-gradient-to-r from-foreground to-ember bg-clip-text text-transparent">Партнёр.</span></span>
+            <span className="block">Пермь Асфальт 59</span>
+            <span className="block translate-x-[6vw]"><span className="bg-gradient-to-r from-foreground to-ember bg-clip-text text-transparent">в&nbsp;Перми.</span></span>
           </h1>
           <p className="mt-10 max-w-3xl text-lg text-muted-foreground md:text-2xl">
-            Премиум Строй — независимая инженерно-строительная компания, основанная в Москве в 2009 году. За 15 лет мы построили дороги, дворы, парковки и магистрали для частных клиентов, девелоперов, промышленных холдингов и государственных заказчиков.
+            Пермь Асфальт 59 — независимая инженерно-строительная компания, работающая в Перми и Пермском крае с 2010 года. За 15 лет мы построили дороги, дворы, парковки и территории для частных клиентов, девелоперов, промышленных предприятий и муниципальных заказчиков.
           </p>
         </div>
       </section>
@@ -56,7 +56,7 @@ function AboutPage() {
       <section className="border-y border-white/5 bg-card/40 bg-noise">
         <div className="mx-auto grid max-w-[1500px] gap-px bg-white/5 sm:grid-cols-2 lg:grid-cols-4">
           {[
-            { v: 15, s: " лет", l: "На рынке" },
+            { v: 15, s: " лет", l: "В Перми" },
             { v: 2400, s: "+", l: "Объектов" },
             { v: 87, s: "", l: "Машин" },
             { v: 120, s: "", l: "В команде" },
@@ -125,7 +125,7 @@ function AboutPage() {
           <div className="font-mono text-[11px] uppercase tracking-[0.3em] text-ember">/ документы</div>
           <h2 className="mt-4 text-display text-[clamp(2.5rem,6vw,5rem)]">Сертификаты и допуски.</h2>
           <div className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {["СРО · стр. работы", "ISO 9001:2015", "ОСАГО · ОПО", "Допуск к федеральным трассам"].map((c) => (
+            {["СРО · стр. работы", "ISO 9001:2015", "ОСАГО · ОПО", "Допуск к дорогам края"].map((c) => (
               <div key={c} className="group relative aspect-[3/4] overflow-hidden rounded-sm border border-white/10 bg-card p-6">
                 <div className="absolute right-4 top-4 font-mono text-[10px] uppercase tracking-widest text-ember opacity-60">верифицировано</div>
                 <Award className="mt-12 h-12 w-12 text-ember" strokeWidth={1.2} />
@@ -139,7 +139,7 @@ function AboutPage() {
 
       <section className="border-t border-white/5 py-32">
         <div className="mx-auto max-w-[1500px] px-6 text-center">
-          <h2 className="text-display text-[clamp(2.5rem,7vw,6rem)]">Поговорим о вашем объекте?</h2>
+          <h2 className="text-display text-[clamp(2.5rem,7vw,6rem)]">Поговорим о вашем объекте в Перми?</h2>
           <Link to="/contacts" className="mt-10 inline-flex items-center gap-3 rounded-sm bg-ember px-8 py-5 font-display text-sm font-bold uppercase tracking-wider text-primary-foreground">
             Связаться <ArrowUpRight className="h-5 w-5" />
           </Link>

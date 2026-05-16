@@ -39,7 +39,7 @@ function CalculatorPage() {
     const t = TYPES.find((x) => x.id === typeId)!;
     let cost = area * t.base * (thickness / 7);
     if (base) cost *= 1.18;
-    if (curb) cost += area * 0.15 * 1200;
+    if (curb) cost += area * 0.15 * 600;
     if (marking) cost += area * 80;
     return Math.round(cost);
   }, [area, thickness, typeId, base, curb, marking]);
@@ -54,7 +54,7 @@ function CalculatorPage() {
       <div className="mx-auto max-w-[1500px] px-6">
         <div className="font-mono text-[11px] uppercase tracking-[0.3em] text-ember">/ калькулятор</div>
         <h1 className="mt-4 text-display text-[clamp(2.5rem,8vw,7rem)] leading-[0.9]">
-          Стоимость<br /><span className="bg-gradient-to-r from-foreground to-ember bg-clip-text text-transparent">за 30 секунд.</span>
+          Цены на асфальтирование<br /><span className="bg-gradient-to-r from-foreground to-ember bg-clip-text text-transparent">в&nbsp;Перми за 30 секунд.</span>
         </h1>
 
         <div className="mt-16 grid gap-12 lg:grid-cols-12">
@@ -128,7 +128,7 @@ function CalculatorPage() {
 
               <div className="mt-8 grid grid-cols-2 gap-px bg-white/5">
                 <Cell label="Срок" value={`${days} дн.`} />
-                <Cell label="Гарантия" value="5 лет" />
+                <Cell label="Гарантия" value="3 года" />
               </div>
 
               <button onClick={() => setOpen(true)} className="mt-8 inline-flex w-full items-center justify-between rounded-sm bg-ember px-6 py-4 font-display text-sm font-bold uppercase tracking-wider text-primary-foreground hover:brightness-110">
