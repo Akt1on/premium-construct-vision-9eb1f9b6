@@ -32,11 +32,11 @@ export function SiteHeader() {
             <div className="relative h-9 w-9">
               <div className="absolute inset-0 rotate-45 bg-ember" />
               <div className="absolute inset-[3px] rotate-45 bg-background" />
-              <div className="absolute inset-0 grid place-items-center font-display text-lg font-black text-foreground">П</div>
+              <div className="absolute inset-0 grid place-items-center font-display text-lg font-black text-foreground">59</div>
             </div>
             <div className="leading-tight">
-              <div className="font-display text-sm font-black tracking-tight">ПРЕМИУМ СТРОЙ</div>
-              <div className="font-mono text-[10px] uppercase text-muted-foreground">est. 2009 · асфальт · техника</div>
+              <div className="font-display text-sm font-black tracking-tight">ПЕРМЬ АСФАЛЬТ 59</div>
+              <div className="font-mono text-[10px] uppercase text-muted-foreground">est. 2010 · Пермь · асфальт</div>
             </div>
           </Link>
 
@@ -55,9 +55,9 @@ export function SiteHeader() {
           </nav>
 
           <div className="flex items-center gap-3">
-            <a href="tel:+74951234567" className="hidden items-center gap-2 font-mono text-sm md:flex">
+            <a href="tel:+73420000000" className="hidden items-center gap-2 font-mono text-sm md:flex">
               <Phone className="h-4 w-4 text-ember" />
-              <span>+7 (495) 123-45-67</span>
+              <span>+7 (342) 000-00-00</span>
             </a>
             <Magnetic>
               <Link
