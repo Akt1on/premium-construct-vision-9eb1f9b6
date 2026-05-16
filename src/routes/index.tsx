@@ -106,20 +106,20 @@ function Hero() {
       <motion.div style={{ opacity }} className="relative z-10 mx-auto flex min-h-[100svh] max-w-[1500px] flex-col justify-end px-6 pb-20 pt-40">
         <div className="flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.3em] text-muted-foreground">
           <span className="h-px w-10 bg-ember" />
-          <span>est. 2009 · Москва</span>
+          <span>est. 2010 · Пермь</span>
           <span className="text-ember">●</span>
           <span>15+ лет на рынке</span>
         </div>
 
         <h1 className="text-display mt-6 text-[clamp(3rem,11vw,11rem)] text-foreground">
-          <span className="block">Мы&nbsp;строим</span>
+          <span className="block">Асфальтирование</span>
           <motion.span
             initial={{ opacity: 0, x: -40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.9, delay: 0.2 }}
             className="block translate-x-[6vw]"
           >
-            <span className="bg-gradient-to-r from-foreground via-foreground to-ember bg-clip-text text-transparent">будущее.</span>
+            <span className="bg-gradient-to-r from-foreground via-foreground to-ember bg-clip-text text-transparent">в&nbsp;Перми.</span>
           </motion.span>
           <motion.span
             initial={{ opacity: 0 }}
@@ -129,7 +129,7 @@ function Hero() {
           >
             <span className="text-foreground/90">Профессионально.</span>
             <span className="text-steel">Быстро.</span>
-            <span className="text-ember">Навсегда.</span>
+            <span className="text-ember">Надёжно.</span>
           </motion.span>
         </h1>
 
@@ -157,7 +157,7 @@ function Hero() {
         </div>
 
         <div className="pointer-events-none absolute right-6 top-40 hidden text-right md:block">
-          <div className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">N 55°45′ E 37°37′</div>
+          <div className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">N 58°00′ E 56°15′</div>
           <div className="mt-1 font-mono text-[11px] uppercase tracking-widest text-ember">REC ● LIVE</div>
         </div>
 
@@ -173,9 +173,9 @@ function Hero() {
 function Stats() {
   const items = [
     { v: 2400, s: "+", l: "Объектов сдано" },
-    { v: 15, s: " лет", l: "На рынке" },
+    { v: 15, s: " лет", l: "На рынке в Перми" },
     { v: 87, s: "", l: "Единиц техники" },
-    { v: 5, s: " лет", l: "Гарантии" },
+    { v: 3, s: " года", l: "Гарантии" },
   ];
   return (
     <section className="relative border-y border-white/5 bg-card/40 bg-noise">
@@ -201,16 +201,16 @@ function Services() {
       <div className="mx-auto max-w-[1500px] px-6">
         <div className="grid gap-12 md:grid-cols-12">
           <div className="md:col-span-5">
-            <div className="font-mono text-[11px] uppercase tracking-[0.3em] text-ember">/ 02 — услуги</div>
+            <div className="font-mono text-[11px] uppercase tracking-[0.3em] text-ember">/ 02 — услуги в Перми</div>
             <h2 className="mt-4 text-display text-[clamp(2.5rem,6vw,5.5rem)]">
-              Полный цикл.<br />
-              <span className="text-muted-foreground">От котлована</span><br />
-              <span className="text-ember">до сдачи объекта.</span>
+              10 направлений.<br />
+              <span className="text-muted-foreground">От асфальта</span><br />
+              <span className="text-ember">до благоустройства.</span>
             </h2>
           </div>
           <div className="md:col-span-7">
             <p className="text-lg text-muted-foreground md:text-xl">
-              Собственный парк техники, штат опытных инженеров и асфальтобетонный завод-партнёр позволяют нам выполнять работы любого масштаба — от двора частного дома до участка федеральной трассы.
+              Собственный парк техники и команда инженеров позволяют выполнять работы любого масштаба в Перми и Пермском крае — от частного двора до промышленных территорий и участков краевых дорог.
             </p>
           </div>
         </div>
@@ -344,7 +344,7 @@ function Testimonials() {
   ];
   const trust = [
     { i: Shield, t: "Договор", d: "По всем работам" },
-    { i: Award, t: "Гарантия 5 лет", d: "На покрытие" },
+    { i: Award, t: "Гарантия 3 года", d: "На покрытие" },
     { i: Clock, t: "Сроки", d: "Фиксируем в договоре" },
     { i: CheckCircle2, t: "ISO 9001", d: "Контроль качества" },
   ];
