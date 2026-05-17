@@ -58,7 +58,7 @@ function AboutPage() {
           {[
             { v: 15, s: " лет", l: "В Перми" },
             { v: 2400, s: "+", l: "Объектов" },
-            { v: 87, s: "", l: "Машин" },
+            { v: 14, s: "+", l: "Машин" },
             { v: 120, s: "", l: "В команде" },
           ].map((it) => (
             <div key={it.l} className="bg-background p-8 md:p-12">
