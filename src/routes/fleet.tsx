@@ -60,7 +60,7 @@ function FleetPage() {
             <span className="block translate-x-[6vw]"><span className="bg-gradient-to-r from-foreground to-ember bg-clip-text text-transparent">в&nbsp;Перми и крае.</span></span>
           </h1>
           <p className="mt-10 max-w-2xl text-lg text-muted-foreground md:text-xl">
-            87 единиц собственной техники в Перми. Все машины проходят ежедневный осмотр. Операторы — в штате с опытом от 7 лет. Работаем по всему Пермскому краю.
+            14+ единиц собственной техники в Перми: самосвалы, катки, погрузчики, кран-борты, экскаваторы, экскаваторы-погрузчики и тракторы-экскаваторы. Все машины проходят ежедневный осмотр. Операторы — в штате с опытом от 7 лет. Работаем по всему Пермскому краю.
           </p>
         </div>
       </section>
