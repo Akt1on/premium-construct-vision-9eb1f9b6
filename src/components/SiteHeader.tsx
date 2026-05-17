@@ -81,7 +81,7 @@ export function SiteHeader() {
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
-              className="glass mt-2 grid gap-1 rounded-sm p-3 lg:hidden"
+              className="mt-2 grid gap-1 rounded-sm border border-white/10 bg-background/95 p-3 shadow-2xl backdrop-blur-xl lg:hidden"
             >
               {NAV.map((n) => (
                 <Link key={n.to} to={n.to} onClick={() => setOpen(false)} className="rounded-sm px-3 py-3 text-sm hover:bg-white/5">
