@@ -10,7 +10,7 @@ export const Route = createFileRoute("/about")({
       { title: "О компании — Пермь Асфальт 59 · с 2010 года в Перми" },
       { name: "description", content: "История, команда, ценности и сертификаты Пермь Асфальт 59. С 2010 года выполняем работы по асфальтированию и благоустройству в Перми и Пермском крае." },
       { property: "og:title", content: "О компании Пермь Асфальт 59 в Перми" },
-      { property: "og:description", content: "15 лет в Перми. 2400+ объектов. 87 машин. 120 человек в команде." },
+      { property: "og:description", content: "15 лет в Перми. 2400+ объектов. 14+ единиц техники. 120 человек в команде." },
       { property: "og:url", content: "https://permasfalt59.ru/about" },
     ],
     links: [{ rel: "canonical", href: "https://permasfalt59.ru/about" }],
