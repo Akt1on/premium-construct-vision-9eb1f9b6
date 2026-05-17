@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Menu, X, Phone } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
-import { Magnetic } from "./Magnetic";
+import { ContactDial } from "./ContactDial";
 
 const NAV = [
   { to: "/", label: "Главная" },
@@ -60,15 +60,9 @@ export function SiteHeader() {
               <Phone className="h-4 w-4 text-ember" />
               <span>+7 (342) 000-00-00</span>
             </a>
-            <Magnetic>
-              <Link
-                to="/contacts"
-                data-magnetic
-                className="hidden rounded-sm bg-ember px-5 py-3 font-display text-xs font-bold uppercase tracking-wider text-primary-foreground transition hover:brightness-110 md:inline-flex"
-              >
-                Заявка
-              </Link>
-            </Magnetic>
+            <div className="hidden md:inline-flex">
+              <ContactDial label="Заявка" />
+            </div>
             <button onClick={() => setOpen((v) => !v)} className="grid h-10 w-10 place-items-center rounded-sm border border-white/10 lg:hidden">
               {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
@@ -81,7 +75,7 @@ export function SiteHeader() {
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
-              className="glass mt-2 grid gap-1 rounded-sm p-3 lg:hidden"
+              className="mt-2 grid gap-1 rounded-sm border border-white/10 bg-background/95 p-3 shadow-2xl backdrop-blur-xl lg:hidden"
             >
               {NAV.map((n) => (
                 <Link key={n.to} to={n.to} onClick={() => setOpen(false)} className="rounded-sm px-3 py-3 text-sm hover:bg-white/5">
