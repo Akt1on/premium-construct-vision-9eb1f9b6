@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Menu, X, Phone } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
-import { Magnetic } from "./Magnetic";
+import { ContactDial } from "./ContactDial";
 
 const NAV = [
   { to: "/", label: "Главная" },
