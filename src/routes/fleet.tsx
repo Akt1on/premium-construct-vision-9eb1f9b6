@@ -21,25 +21,27 @@ export const Route = createFileRoute("/fleet")({
   component: FleetPage,
 });
 
-type Cat = "all" | "excavation" | "paving" | "compaction" | "transport";
+type Cat = "all" | "transport" | "compaction" | "loaders" | "crane" | "excavation" | "backhoe" | "tractor";
 
 const FLEET = [
-  { id: "EX-CAT-336", cat: "excavation", name: "Экскаватор Cat 336", spec: "36 т · 1.9 м³", price: "3 200 ₽/час", img: excavator },
-  { id: "EX-VOL-EC", cat: "excavation", name: "Экскаватор Volvo EC220", spec: "22 т · 1.2 м³", price: "2 600 ₽/час", img: excavator },
-  { id: "PV-VOG-S18", cat: "paving", name: "Асфальтоукладчик Vögele S1800-3", spec: "ширина до 9 м", price: "5 800 ₽/час", img: paver },
-  { id: "PV-DYN-F18", cat: "paving", name: "Dynapac F1800W", spec: "колёсный · до 6 м", price: "4 900 ₽/час", img: paver },
-  { id: "RL-HAM-HD", cat: "compaction", name: "Каток Hamm HD+ 90", spec: "9 т · вибро", price: "2 200 ₽/час", img: roller },
-  { id: "RL-BOM-22", cat: "compaction", name: "Bomag BW 213", spec: "13 т · одновальц.", price: "2 500 ₽/час", img: roller },
-  { id: "TR-VOL-FH", cat: "transport", name: "Самосвал Volvo FH", spec: "20 т · 12 м³", price: "1 800 ₽/час", img: truck },
-  { id: "TR-MAN-TG", cat: "transport", name: "MAN TGS 33.440", spec: "25 т · 16 м³", price: "2 100 ₽/час", img: truck },
+  { id: "DUMP-01", cat: "transport", name: "Самосвалы", spec: "Перевозка сыпучих материалов, грунта, строительного мусора", price: "от 1 800 ₽/час", img: truck },
+  { id: "ROLL-01", cat: "compaction", name: "Катки", spec: "Уплотнение грунта и асфальта при дорожных работах", price: "от 2 200 ₽/час", img: roller },
+  { id: "LOAD-01", cat: "loaders", name: "Погрузчики", spec: "Погрузочно-разгрузочные работы любой сложности", price: "от 2 000 ₽/час", img: excavator },
+  { id: "CRAN-01", cat: "crane", name: "Кран-борты", spec: "Перевозка крупногабаритных грузов с самостоятельной погрузкой", price: "от 2 400 ₽/час", img: truck },
+  { id: "EXCV-01", cat: "excavation", name: "Экскаваторы", spec: "Рытьё котлованов, траншей и земляные работы", price: "от 2 600 ₽/час", img: excavator },
+  { id: "BHOE-01", cat: "backhoe", name: "Экскаваторы-погрузчики", spec: "Универсальная техника: копка, погрузка, транспортировка", price: "от 2 200 ₽/час", img: excavator },
+  { id: "TRAC-01", cat: "tractor", name: "Тракторы-экскаваторы", spec: "Многофункциональная техника для строительных и с/х задач", price: "от 2 000 ₽/час", img: paver },
 ] as const;
 
 const CATS: { id: Cat; label: string; count: string }[] = [
-  { id: "all", label: "Вся техника", count: "87" },
-  { id: "excavation", label: "Экскаваторы", count: "21" },
-  { id: "paving", label: "Укладчики", count: "12" },
-  { id: "compaction", label: "Катки", count: "18" },
-  { id: "transport", label: "Самосвалы", count: "36" },
+  { id: "all", label: "Вся техника", count: "14+" },
+  { id: "transport", label: "Самосвалы", count: "3" },
+  { id: "compaction", label: "Катки", count: "2" },
+  { id: "loaders", label: "Погрузчики", count: "2" },
+  { id: "crane", label: "Кран-борты", count: "2" },
+  { id: "excavation", label: "Экскаваторы", count: "2" },
+  { id: "backhoe", label: "Экск.-погрузчики", count: "2" },
+  { id: "tractor", label: "Тракторы-экск.", count: "1" },
 ];
 
 function FleetPage() {
