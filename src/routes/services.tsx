@@ -1,11 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "motion/react";
-import { Layers, Mountain, Wrench, Truck, Package, ArrowUpRight, CheckCircle2, Snowflake, Trees, Trash2, Hammer } from "lucide-react";
-import paver from "@/assets/paver.jpg";
-import excavator from "@/assets/excavator.jpg";
-import roller from "@/assets/roller.jpg";
-import truck from "@/assets/truck.jpg";
-import texture from "@/assets/texture.jpg";
+import { ArrowUpRight, CheckCircle2 } from "lucide-react";
+import { SERVICES, type Service } from "@/lib/services-data";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
