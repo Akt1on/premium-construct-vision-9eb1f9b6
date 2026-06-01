@@ -1,7 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { motion } from "motion/react";
 import { ArrowUpRight, ArrowLeft, CheckCircle2, Phone } from "lucide-react";
-import { getService, SERVICES } from "@/lib/services-data";
+import { getService, SERVICES, type Service } from "@/lib/services-data";
 
 export const Route = createFileRoute("/services/$slug")({
   loader: ({ params }) => {
@@ -86,7 +86,7 @@ export const Route = createFileRoute("/services/$slug")({
 });
 
 function ServiceDetailPage() {
-  const { service: s } = Route.useLoaderData();
+  const { service: s } = Route.useLoaderData() as { service: Service };
   const related = SERVICES.filter((x) => x.slug !== s.slug).slice(0, 3);
 
   return (
