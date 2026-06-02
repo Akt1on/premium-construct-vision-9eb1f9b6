@@ -81,6 +81,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "theme-color", content: "#0A0F1C" },
       { title: "Асфальтирование в Перми | Пермь Асфальт 59 — от 300 ₽/кв.м" },
       { name: "description", content: "Асфальтирование дорог и территорий в Перми и Пермском крае от 300 ₽/кв.м. Работаем с 2010 года. Гарантия 3 года. Бесплатный выезд на объект." },
+      { name: "keywords", content: "асфальтирование Пермь, укладка асфальта Пермь, ямочный ремонт Пермь, асфальтирование Пермский край, благоустройство территории Пермь, тротуарная плитка Пермь, аренда спецтехники Пермь, строительство дорог Пермь, асфальтирование двора, асфальтирование парковки" },
+      { name: "geo.region", content: "RU-PER" },
+      { name: "geo.placename", content: "Пермь" },
+      { name: "yandex-verification", content: "REPLACE_WITH_YANDEX_CODE" },
+      { name: "robots", content: "index, follow, max-image-preview:large" },
+      { property: "og:locale", content: "ru_RU" },
       { property: "og:site_name", content: "Пермь Асфальт 59" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -92,6 +98,30 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/3a1568f5-e96f-42d7-9eca-ac97c26b641e/id-preview-ab7337d7--e3ad1de5-26cf-447d-a9b8-adee02ff7651.lovable.app-1778798701475.png" },
     ],
     links: [{ rel: "stylesheet", href: appCss }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          name: "Пермь Асфальт 59",
+          description:
+            "Асфальтирование, ямочный ремонт, благоустройство территорий, укладка тротуарной плитки и аренда спецтехники в Перми и Пермском крае.",
+          url: "https://permasfalt59.ru",
+          image:
+            "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/3a1568f5-e96f-42d7-9eca-ac97c26b641e/id-preview-ab7337d7--e3ad1de5-26cf-447d-a9b8-adee02ff7651.lovable.app-1778798701475.png",
+          priceRange: "₽₽",
+          areaServed: ["Пермь", "Пермский край"],
+          address: {
+            "@type": "PostalAddress",
+            addressLocality: "Пермь",
+            addressRegion: "Пермский край",
+            addressCountry: "RU",
+          },
+          geo: { "@type": "GeoCoordinates", latitude: 58.0105, longitude: 56.2502 },
+        }),
+      },
+    ],
   }),
   shellComponent: RootShell,
   component: RootComponent,
