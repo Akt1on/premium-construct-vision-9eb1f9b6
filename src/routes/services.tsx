@@ -37,7 +37,7 @@ function ServicesPage() {
         </div>
       </section>
 
-      {CHAPTERS.map((c, i) => (
+      {SERVICES.map((c, i) => (
         <Chapter key={c.n} chapter={c} reversed={i % 2 === 1} />
       ))}
 
