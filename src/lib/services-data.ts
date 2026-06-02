@@ -12,6 +12,8 @@ import {
 } from "lucide-react";
 import paver from "@/assets/paver.jpg";
 import excavator from "@/assets/excavator.jpg";
+import after from "@/assets/after.jpg";
+import before from "@/assets/before.jpg";
 import svcTile from "@/assets/svc-tile.jpg";
 import svcWaste from "@/assets/svc-waste.jpg";
 import svcFleet from "@/assets/svc-fleet.jpg";
