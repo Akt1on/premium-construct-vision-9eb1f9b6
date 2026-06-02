@@ -12,11 +12,14 @@ import {
 } from "lucide-react";
 import paver from "@/assets/paver.jpg";
 import excavator from "@/assets/excavator.jpg";
-import roller from "@/assets/roller.jpg";
-import truck from "@/assets/truck.jpg";
-import texture from "@/assets/texture.jpg";
-import after from "@/assets/after.jpg";
-import before from "@/assets/before.jpg";
+import svcTile from "@/assets/svc-tile.jpg";
+import svcWaste from "@/assets/svc-waste.jpg";
+import svcFleet from "@/assets/svc-fleet.jpg";
+import svcMaterials from "@/assets/svc-materials.jpg";
+import svcDemolition from "@/assets/svc-demolition.jpg";
+import svcSnow from "@/assets/svc-snow.jpg";
+import svcTrees from "@/assets/svc-trees.jpg";
+import svcAggregate from "@/assets/svc-aggregate.jpg";
 
 export interface ServiceProcessStep {
   title: string;
