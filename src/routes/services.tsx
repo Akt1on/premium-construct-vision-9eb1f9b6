@@ -60,7 +60,7 @@ function ServicesPage() {
   );
 }
 
-function Chapter({ chapter: c, reversed }: { chapter: typeof CHAPTERS[number]; reversed: boolean }) {
+function Chapter({ chapter: c, reversed }: { chapter: Service; reversed: boolean }) {
   return (
     <section className="relative overflow-hidden border-t border-white/5 py-24 md:py-32">
       <div className="mx-auto grid max-w-[1500px] gap-12 px-6 md:grid-cols-12 md:gap-16">
@@ -71,15 +71,17 @@ function Chapter({ chapter: c, reversed }: { chapter: typeof CHAPTERS[number]; r
           transition={{ duration: 0.8 }}
           className={`relative md:col-span-6 ${reversed ? "md:order-2" : ""}`}
         >
-          <div className="relative aspect-[4/5] overflow-hidden">
-            <img src={c.img} alt={c.title} loading="lazy" className="absolute inset-0 h-full w-full object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-background/30" />
-            <div className="absolute left-6 top-6 font-mono text-[11px] uppercase tracking-widest text-ember">{c.n} / 10</div>
-            <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between">
-              <div className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">{c.sub}</div>
-              <div className="font-display text-2xl font-black text-ember">{c.price}</div>
+          <Link to="/services/$slug" params={{ slug: c.slug }} className="group block">
+            <div className="relative aspect-[4/5] overflow-hidden">
+              <img src={c.img} alt={c.title} loading="lazy" className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105" />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-background/30" />
+              <div className="absolute left-6 top-6 font-mono text-[11px] uppercase tracking-widest text-ember">{c.n} / 10</div>
+              <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between">
+                <div className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">{c.sub}</div>
+                <div className="font-display text-2xl font-black text-ember">{c.price}</div>
+              </div>
             </div>
-          </div>
+          </Link>
         </motion.div>
 
         <motion.div
@@ -100,9 +102,12 @@ function Chapter({ chapter: c, reversed }: { chapter: typeof CHAPTERS[number]; r
               </li>
             ))}
           </ul>
-          <div className="mt-10">
+          <div className="mt-10 flex flex-wrap gap-6">
+            <Link to="/services/$slug" params={{ slug: c.slug }} className="group inline-flex items-center gap-3 border-b border-ember pb-2 font-display text-sm font-bold uppercase tracking-wider text-ember">
+              Подробнее об услуге <ArrowUpRight className="h-4 w-4 transition group-hover:rotate-45" />
+            </Link>
             <Link to="/contacts" className="group inline-flex items-center gap-3 border-b border-foreground/30 pb-2 font-display text-sm font-bold uppercase tracking-wider hover:border-ember">
-              Заказать услугу <ArrowUpRight className="h-4 w-4 transition group-hover:rotate-45" />
+              Заказать <ArrowUpRight className="h-4 w-4 transition group-hover:rotate-45" />
             </Link>
           </div>
         </motion.div>
