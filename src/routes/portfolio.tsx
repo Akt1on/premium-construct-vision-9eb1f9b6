@@ -72,17 +72,34 @@ function PortfolioPage() {
 
       <section className="py-20">
         <div className="mx-auto max-w-[1500px] px-6">
+          <div className="mb-10 flex flex-wrap gap-3">
+            {FILTERS.map((f) => (
+              <button
+                key={f}
+                onClick={() => setFilter(f)}
+                className={`rounded-sm border px-5 py-2.5 font-mono text-[11px] uppercase tracking-widest transition ${
+                  filter === f
+                    ? "border-ember bg-ember text-primary-foreground"
+                    : "border-white/10 text-muted-foreground hover:border-ember hover:text-foreground"
+                }`}
+              >
+                {f}
+              </button>
+            ))}
+          </div>
           <div className="grid auto-rows-[260px] grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-4">
-            {PROJECTS.map((it, i) => (
+            {visible.map((it, i) => (
               <motion.button
                 key={it.id}
                 onClick={() => setOpen(it)}
+                layout
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.6, delay: i * 0.06 }}
                 className={`group relative overflow-hidden bg-card text-left ${it.h}`}
               >
+
                 <img src={it.img} alt={it.t} loading="lazy" className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1.2s] group-hover:scale-110" />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
                 <div className="absolute inset-x-0 bottom-0 p-6">
