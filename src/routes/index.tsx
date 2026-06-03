@@ -234,18 +234,28 @@ function Services() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.6, delay: i * 0.06 }}
-              className="group relative min-h-[340px] overflow-hidden bg-background p-8"
+              className="group relative min-h-[340px] overflow-hidden bg-background"
             >
-              <div className="absolute right-6 top-6 font-mono text-[11px] uppercase tracking-widest text-muted-foreground">{s.tag}</div>
+              <img
+                src={s.img}
+                alt={`${s.title} в Перми`}
+                loading="lazy"
+                className="absolute inset-0 h-full w-full object-cover opacity-20 transition-all duration-700 group-hover:scale-105 group-hover:opacity-35"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/90 to-background/55" />
+              <div className="absolute right-6 top-6 z-10 font-mono text-[11px] uppercase tracking-widest text-muted-foreground">{s.tag}</div>
               <div className="absolute -right-12 -top-12 h-44 w-44 rounded-full bg-ember/0 blur-3xl transition-all duration-700 group-hover:bg-ember/40" />
-              <s.icon className="h-10 w-10 text-steel transition-transform duration-500 group-hover:-rotate-6 group-hover:text-ember" strokeWidth={1.4} />
-              <h3 className="mt-12 font-display text-2xl font-bold transition group-hover:text-ember md:text-3xl">{s.title}</h3>
-              <p className="mt-3 text-sm text-muted-foreground">{s.desc}</p>
-              <Link to="/services" className="absolute bottom-6 left-8 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-widest text-foreground/80 transition hover:text-ember">
+              <div className="relative z-10 p-8 pb-16">
+                <s.icon className="h-10 w-10 text-steel transition-transform duration-500 group-hover:-rotate-6 group-hover:text-ember" strokeWidth={1.4} />
+                <h3 className="mt-12 font-display text-2xl font-bold transition group-hover:text-ember md:text-3xl">{s.title}</h3>
+                <p className="mt-3 text-sm text-muted-foreground">{s.desc}</p>
+              </div>
+              <Link to="/services/$slug" params={{ slug: s.slug }} className="absolute bottom-6 left-8 z-10 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-widest text-foreground/80 transition hover:text-ember">
                 Подробнее <ArrowUpRight className="h-3.5 w-3.5" />
               </Link>
-              <div className="absolute inset-x-0 bottom-0 h-[2px] origin-left scale-x-0 bg-ember transition-transform duration-700 group-hover:scale-x-100" />
+              <div className="absolute inset-x-0 bottom-0 z-10 h-[2px] origin-left scale-x-0 bg-ember transition-transform duration-700 group-hover:scale-x-100" />
             </motion.div>
+
           ))}
           <div className="relative flex min-h-[340px] flex-col justify-between overflow-hidden bg-ember p-8 text-primary-foreground">
             <div className="font-mono text-[11px] uppercase tracking-widest opacity-80">/ заявка</div>
