@@ -41,6 +41,7 @@ export const Route = createFileRoute("/")({
       { name: "description", content: "Асфальтирование дорог и территорий в Перми и Пермском крае от 300 ₽/кв.м. Работаем с 2010 года. Гарантия 3 года. Бесплатный выезд на объект." },
       { property: "og:title", content: "Асфальтирование в Перми и Пермском крае — Асфальт Пермь" },
       { property: "og:description", content: "С 2010 года · собственная техника · договор · гарантия 3 года · от 300 ₽/кв.м." },
+      { property: "og:url", content: "https://asfalltperm.ru/" },
       { property: "og:type", content: "website" },
     ],
     links: [{ rel: "canonical", href: "https://asfalltperm.ru/" }],
