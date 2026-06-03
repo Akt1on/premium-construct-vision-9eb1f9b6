@@ -56,9 +56,9 @@ export function SiteHeader() {
           </nav>
 
           <div className="flex items-center gap-3">
-            <a href="tel:+73420000000" className="hidden items-center gap-2 font-mono text-sm md:flex">
+            <a href="tel:+79082518226" className="hidden items-center gap-2 font-mono text-sm md:flex">
               <Phone className="h-4 w-4 text-ember" />
-              <span>+7 (342) 000-00-00</span>
+              <span>+7 (908) 251-82-26</span>
             </a>
             <div className="hidden md:inline-flex">
               <ContactDial label="Заявка" />

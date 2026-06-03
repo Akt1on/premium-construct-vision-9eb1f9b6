@@ -10,13 +10,13 @@ import truck from "@/assets/truck.jpg";
 export const Route = createFileRoute("/fleet")({
   head: () => ({
     meta: [
-      { title: "Аренда спецтехники в Перми и Пермском крае | Пермь Асфальт 59" },
+      { title: "Аренда спецтехники в Перми и Пермском крае | Асфальт Пермь" },
       { name: "description", content: "Аренда спецтехники в Перми: самосвалы, катки, погрузчики, кран-борты, экскаваторы, экскаваторы-погрузчики, тракторы-экскаваторы. 14+ единиц собственной техники, с оператором, 24/7." },
-      { property: "og:title", content: "Парк техники Пермь Асфальт 59 в Перми" },
+      { property: "og:title", content: "Парк техники Асфальт Пермь в Перми" },
       { property: "og:description", content: "14+ единиц техники в Перми. Все с операторами. Доставка на объект." },
-      { property: "og:url", content: "https://permasfalt59.ru/fleet" },
+      { property: "og:url", content: "https://asfalltperm.ru/fleet" },
     ],
-    links: [{ rel: "canonical", href: "https://permasfalt59.ru/fleet" }],
+    links: [{ rel: "canonical", href: "https://asfalltperm.ru/fleet" }],
   }),
   component: FleetPage,
 });

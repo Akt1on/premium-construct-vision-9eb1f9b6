@@ -27,22 +27,22 @@ import { Counter } from "@/components/Counter";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Асфальтирование в Перми | Пермь Асфальт 59 — от 300 ₽/кв.м" },
+      { title: "Асфальтирование в Перми | Асфальт Пермь — от 300 ₽/кв.м" },
       { name: "description", content: "Асфальтирование дорог и территорий в Перми и Пермском крае от 300 ₽/кв.м. Работаем с 2010 года. Гарантия 3 года. Бесплатный выезд на объект." },
-      { property: "og:title", content: "Асфальтирование в Перми и Пермском крае — Пермь Асфальт 59" },
+      { property: "og:title", content: "Асфальтирование в Перми и Пермском крае — Асфальт Пермь" },
       { property: "og:description", content: "С 2010 года · собственная техника · договор · гарантия 3 года · от 300 ₽/кв.м." },
       { property: "og:image", content: "/og.jpg" },
       { property: "og:type", content: "website" },
     ],
-    links: [{ rel: "canonical", href: "https://permasfalt59.ru/" }],
+    links: [{ rel: "canonical", href: "https://asfalltperm.ru/" }],
     scripts: [{
       type: "application/ld+json",
       children: JSON.stringify({
         "@context": "https://schema.org",
         "@type": "LocalBusiness",
-        name: "Пермь Асфальт 59",
-        url: "https://permasfalt59.ru",
-        telephone: "+7-342-000-0000",
+        name: "Асфальт Пермь",
+        url: "https://asfalltperm.ru",
+        telephone: "+7-908-251-82-26",
         address: {
           "@type": "PostalAddress",
           addressLocality: "Пермь",
