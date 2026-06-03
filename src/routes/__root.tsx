@@ -108,6 +108,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           description:
             "Асфальтирование, ямочный ремонт, благоустройство территорий, укладка тротуарной плитки и аренда спецтехники в Перми и Пермском крае.",
           url: "https://asfalltperm.ru",
+          telephone: "+7-908-251-82-26",
           image:
             "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/3a1568f5-e96f-42d7-9eca-ac97c26b641e/id-preview-ab7337d7--e3ad1de5-26cf-447d-a9b8-adee02ff7651.lovable.app-1778798701475.png",
           priceRange: "₽₽",
