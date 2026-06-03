@@ -70,17 +70,18 @@ export const Route = createFileRoute("/")({
 });
 
 const SERVICES = [
-  { icon: Layers, title: "Асфальтирование", desc: "Дворы, парковки, дороги, магистрали. Укладка от 50 м². От 300 ₽/кв.м.", tag: "01" },
-  { icon: Mountain, title: "Укладка тротуарной плитки", desc: "Мощение дорог, площадок, отмостков, зон отдыха. От 450 ₽/кв.м.", tag: "02" },
-  { icon: Package, title: "Вывоз строительного мусора", desc: "Оперативный вывоз отходов с объекта. От 200 ₽/кв.м.", tag: "03" },
-  { icon: Truck, title: "Аренда спецтехники", desc: "Самосвалы, катки, экскаваторы, погрузчики, кран-борт. По договору.", tag: "04" },
-  { icon: Wrench, title: "Земляные работы", desc: "Механизированная копка, газоны, бордюры. От 120 ₽/кв.м.", tag: "05" },
-  { icon: Package, title: "Доставка нерудных материалов", desc: "ПГС, щебень, песок, гравий, чернозём, торф. От 200 ₽/т.", tag: "06" },
-  { icon: Wrench, title: "Демонтаж зданий и сооружений", desc: "Снос и демонтажные работы любой сложности. От 50 ₽/кв.м.", tag: "07" },
-  { icon: Truck, title: "Уборка и вывоз снега", desc: "Техника для уборки и вывоз снега в Перми. По договору.", tag: "08" },
-  { icon: Mountain, title: "Кронирование деревьев", desc: "Профессиональная обрезка и формирование кроны. От 1450 ₽/час.", tag: "09" },
-  { icon: Package, title: "Нерудные материалы", desc: "Песок, щебень, ПГС, чернозём, торф, бутовый камень. По договору.", tag: "10" },
+  { icon: Layers, title: "Асфальтирование", desc: "Дворы, парковки, дороги, магистрали. Укладка от 50 м². От 300 ₽/кв.м.", tag: "01", slug: "asfaltirovanie", img: paver },
+  { icon: Mountain, title: "Укладка тротуарной плитки", desc: "Мощение дорог, площадок, отмостков, зон отдыха. От 450 ₽/кв.м.", tag: "02", slug: "trotuarnaya-plitka", img: svcTile },
+  { icon: Package, title: "Вывоз строительного мусора", desc: "Оперативный вывоз отходов с объекта. От 200 ₽/кв.м.", tag: "03", slug: "vyvoz-musora", img: svcWaste },
+  { icon: Truck, title: "Аренда спецтехники", desc: "Самосвалы, катки, экскаваторы, погрузчики, кран-борт. По договору.", tag: "04", slug: "arenda-spectehniki", img: svcFleet },
+  { icon: Wrench, title: "Земляные работы", desc: "Механизированная копка, газоны, бордюры. От 120 ₽/кв.м.", tag: "05", slug: "zemlyanye-raboty", img: excavator },
+  { icon: Package, title: "Доставка нерудных материалов", desc: "ПГС, щебень, песок, гравий, чернозём, торф. От 200 ₽/т.", tag: "06", slug: "dostavka-nerudnyh-materialov", img: svcMaterials },
+  { icon: Wrench, title: "Демонтаж зданий и сооружений", desc: "Снос и демонтажные работы любой сложности. От 50 ₽/кв.м.", tag: "07", slug: "demontazh", img: svcDemolition },
+  { icon: Truck, title: "Уборка и вывоз снега", desc: "Техника для уборки и вывоз снега в Перми. По договору.", tag: "08", slug: "uborka-snega", img: svcSnow },
+  { icon: Mountain, title: "Кронирование деревьев", desc: "Профессиональная обрезка и формирование кроны. От 1450 ₽/час.", tag: "09", slug: "kronirovanie", img: svcTrees },
+  { icon: Package, title: "Нерудные материалы", desc: "Песок, щебень, ПГС, чернозём, торф, бутовый камень. По договору.", tag: "10", slug: "nerudnye-materialy", img: svcAggregate },
 ] as const;
+
 
 function HomePage() {
   return (
