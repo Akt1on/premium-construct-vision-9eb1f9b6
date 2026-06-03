@@ -21,6 +21,16 @@ import p1 from "@/assets/project1.jpg";
 import p2 from "@/assets/project2.jpg";
 import p3 from "@/assets/project3.jpg";
 import p4 from "@/assets/project4.jpg";
+import paver from "@/assets/paver.jpg";
+import excavator from "@/assets/excavator.jpg";
+import svcTile from "@/assets/svc-tile.jpg";
+import svcWaste from "@/assets/svc-waste.jpg";
+import svcFleet from "@/assets/svc-fleet.jpg";
+import svcMaterials from "@/assets/svc-materials.jpg";
+import svcDemolition from "@/assets/svc-demolition.jpg";
+import svcSnow from "@/assets/svc-snow.jpg";
+import svcTrees from "@/assets/svc-trees.jpg";
+import svcAggregate from "@/assets/svc-aggregate.jpg";
 import { Magnetic } from "@/components/Magnetic";
 import { Counter } from "@/components/Counter";
 
