@@ -12,7 +12,7 @@ export const Route = createFileRoute("/services/$slug")({
   head: ({ loaderData }) => {
     const s = loaderData?.service;
     if (!s) return {};
-    const url = `https://permasfalt59.ru/services/${s.slug}`;
+    const url = `https://asfalltperm.ru/services/${s.slug}`;
     return {
       meta: [
         { title: s.metaTitle },
@@ -38,9 +38,9 @@ export const Route = createFileRoute("/services/$slug")({
             serviceType: s.title,
             provider: {
               "@type": "LocalBusiness",
-              name: "Пермь Асфальт 59",
-              url: "https://permasfalt59.ru",
-              telephone: "+7-342-000-0000",
+              name: "Асфальт Пермь",
+              url: "https://asfalltperm.ru",
+              telephone: "+7-908-251-82-26",
               areaServed: ["Пермь", "Пермский край"],
             },
             areaServed: ["Пермь", "Пермский край"],
@@ -293,7 +293,7 @@ function ServiceDetailPage() {
           <p className="mt-6 text-lg text-muted-foreground">Бесплатный выезд инженера и смета в течение 24 часов.</p>
           <div className="mt-10 flex flex-wrap justify-center gap-6">
             <a
-              href="tel:+73420000000"
+              href="tel:+79082518226"
               className="inline-flex items-center gap-3 rounded-sm bg-ember px-8 py-5 font-display text-sm font-bold uppercase tracking-wider text-primary-foreground hover:brightness-110"
             >
               <Phone className="h-5 w-5" /> Позвонить

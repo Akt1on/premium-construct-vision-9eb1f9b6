@@ -13,13 +13,13 @@ import after from "@/assets/after.jpg";
 export const Route = createFileRoute("/portfolio")({
   head: () => ({
     meta: [
-      { title: "Портфолио — Пермь Асфальт 59 · 2400+ объектов в Перми и крае" },
+      { title: "Портфолио — Асфальт Пермь · 2400+ объектов в Перми и крае" },
       { name: "description", content: "Реализованные проекты в Перми и Пермском крае: парковки, дворы, дороги, котлованы, благоустройство. Результаты до и после." },
-      { property: "og:title", content: "Портфолио Пермь Асфальт 59 в Перми" },
+      { property: "og:title", content: "Портфолио Асфальт Пермь в Перми" },
       { property: "og:description", content: "Более 2400 объектов в Перми и крае. Реальные кейсы, реальные цифры." },
-      { property: "og:url", content: "https://permasfalt59.ru/portfolio" },
+      { property: "og:url", content: "https://asfalltperm.ru/portfolio" },
     ],
-    links: [{ rel: "canonical", href: "https://permasfalt59.ru/portfolio" }],
+    links: [{ rel: "canonical", href: "https://asfalltperm.ru/portfolio" }],
   }),
   component: PortfolioPage,
 });

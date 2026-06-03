@@ -6,13 +6,13 @@ import { SERVICES, type Service } from "@/lib/services-data";
 export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
-      { title: "Услуги асфальтирования в Перми и Пермском крае | Пермь Асфальт 59" },
+      { title: "Услуги асфальтирования в Перми и Пермском крае | Асфальт Пермь" },
       { name: "description", content: "Полный спектр услуг по асфальтированию, укладке плитки, земляным работам в Перми. Работаем с 2010 года, гарантия 3 года." },
-      { property: "og:title", content: "Услуги в Перми — Пермь Асфальт 59" },
+      { property: "og:title", content: "Услуги в Перми — Асфальт Пермь" },
       { property: "og:description", content: "10 направлений работ. Собственная техника. Гарантия 3 года." },
-      { property: "og:url", content: "https://permasfalt59.ru/services" },
+      { property: "og:url", content: "https://asfalltperm.ru/services" },
     ],
-    links: [{ rel: "canonical", href: "https://permasfalt59.ru/services" }],
+    links: [{ rel: "canonical", href: "https://asfalltperm.ru/services" }],
   }),
   component: ServicesPage,
 });

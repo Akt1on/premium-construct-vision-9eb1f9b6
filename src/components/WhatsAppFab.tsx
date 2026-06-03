@@ -2,8 +2,8 @@ import { useEffect, useState, type ReactNode } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { MessageCircle, X, Phone, Send } from "lucide-react";
 
-const PHONE_RAW = "+73420000000";
-const PHONE_DIGITS = "73420000000";
+const PHONE_RAW = "+79082518226";
+const PHONE_DIGITS = "79082518226";
 
 type Channel = { label: string; href: string; icon: ReactNode };
 const CHANNELS: Channel[] = [

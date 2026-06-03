@@ -7,13 +7,13 @@ import texture from "@/assets/texture.jpg";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "О компании — Пермь Асфальт 59 · с 2010 года в Перми" },
-      { name: "description", content: "История, команда, ценности и сертификаты Пермь Асфальт 59. С 2010 года выполняем работы по асфальтированию и благоустройству в Перми и Пермском крае." },
-      { property: "og:title", content: "О компании Пермь Асфальт 59 в Перми" },
+      { title: "О компании — Асфальт Пермь · с 2010 года в Перми" },
+      { name: "description", content: "История, команда, ценности и сертификаты Асфальт Пермь. С 2010 года выполняем работы по асфальтированию и благоустройству в Перми и Пермском крае." },
+      { property: "og:title", content: "О компании Асфальт Пермь в Перми" },
       { property: "og:description", content: "15 лет в Перми. 2400+ объектов. 14+ единиц техники. 120 человек в команде." },
-      { property: "og:url", content: "https://permasfalt59.ru/about" },
+      { property: "og:url", content: "https://asfalltperm.ru/about" },
     ],
-    links: [{ rel: "canonical", href: "https://permasfalt59.ru/about" }],
+    links: [{ rel: "canonical", href: "https://asfalltperm.ru/about" }],
   }),
   component: AboutPage,
 });
@@ -44,11 +44,11 @@ function AboutPage() {
         <div className="mx-auto max-w-[1500px] px-6">
           <div className="font-mono text-[11px] uppercase tracking-[0.3em] text-ember">/ о компании</div>
           <h1 className="mt-4 text-display text-[clamp(3rem,10vw,9rem)] leading-[0.85]">
-            <span className="block">Пермь Асфальт 59</span>
+            <span className="block">Асфальт Пермь</span>
             <span className="block translate-x-[6vw]"><span className="bg-gradient-to-r from-foreground to-ember bg-clip-text text-transparent">в&nbsp;Перми.</span></span>
           </h1>
           <p className="mt-10 max-w-3xl text-lg text-muted-foreground md:text-2xl">
-            Пермь Асфальт 59 — независимая инженерно-строительная компания, работающая в Перми и Пермском крае с 2010 года. За 15 лет мы построили дороги, дворы, парковки и территории для частных клиентов, девелоперов, промышленных предприятий и муниципальных заказчиков.
+            Асфальт Пермь — независимая инженерно-строительная компания, работающая в Перми и Пермском крае с 2010 года. За 15 лет мы построили дороги, дворы, парковки и территории для частных клиентов, девелоперов, промышленных предприятий и муниципальных заказчиков.
           </p>
         </div>
       </section>

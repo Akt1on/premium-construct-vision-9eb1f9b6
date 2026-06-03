@@ -5,13 +5,13 @@ import { ArrowUpRight } from "lucide-react";
 export const Route = createFileRoute("/prices")({
   head: () => ({
     meta: [
-      { title: "Цены на асфальтирование в Перми 2025 | Пермь Асфальт 59" },
+      { title: "Цены на асфальтирование в Перми 2025 | Асфальт Пермь" },
       { name: "description", content: "Актуальные цены на асфальтирование, укладку плитки, земляные работы в Перми. От 300 ₽/кв.м. Бесплатный замер и выезд." },
-      { property: "og:title", content: "Цены на асфальтирование в Перми 2025 — Пермь Асфальт 59" },
+      { property: "og:title", content: "Цены на асфальтирование в Перми 2025 — Асфальт Пермь" },
       { property: "og:description", content: "Прозрачный прайс: асфальт, плитка, земляные работы, спецтехника, нерудные материалы." },
-      { property: "og:url", content: "https://permasfalt59.ru/prices" },
+      { property: "og:url", content: "https://asfalltperm.ru/prices" },
     ],
-    links: [{ rel: "canonical", href: "https://permasfalt59.ru/prices" }],
+    links: [{ rel: "canonical", href: "https://asfalltperm.ru/prices" }],
   }),
   component: PricesPage,
 });

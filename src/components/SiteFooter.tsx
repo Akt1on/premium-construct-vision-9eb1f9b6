@@ -45,15 +45,15 @@ export function SiteFooter() {
         <div>
           <div className="font-display text-xs font-bold uppercase tracking-widest text-ember">Контакты</div>
           <ul className="mt-4 space-y-3 text-sm">
-            <li className="flex items-start gap-3"><Phone className="mt-0.5 h-4 w-4 text-steel" /><a href="tel:+73420000000">+7 (342) 000-00-00</a></li>
-            <li className="flex items-start gap-3"><Mail className="mt-0.5 h-4 w-4 text-steel" /><a href="mailto:info@permasfalt59.ru">info@permasfalt59.ru</a></li>
+            <li className="flex items-start gap-3"><Phone className="mt-0.5 h-4 w-4 text-steel" /><a href="tel:+79082518226">+7 (908) 251-82-26</a></li>
+            <li className="flex items-start gap-3"><Mail className="mt-0.5 h-4 w-4 text-steel" /><a href="mailto:info@asfalltperm.ru">info@asfalltperm.ru</a></li>
             <li className="flex items-start gap-3"><MapPin className="mt-0.5 h-4 w-4 text-steel" /><span className="text-muted-foreground">г. Пермь, Пермский край</span></li>
           </ul>
         </div>
       </div>
       <div className="border-t border-white/5">
         <div className="mx-auto flex max-w-[1500px] flex-wrap items-center justify-between gap-3 px-6 py-5 font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
-          <span>© {new Date().getFullYear()} Пермь Асфальт 59. Все права защищены.</span>
+          <span>© {new Date().getFullYear()} Асфальт Пермь. Все права защищены.</span>
           <span>Работаем 24/7 · Пермь и Пермский край</span>
         </div>
       </div>
