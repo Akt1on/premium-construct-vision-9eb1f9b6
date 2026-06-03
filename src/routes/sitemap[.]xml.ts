@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SERVICES } from "@/lib/services-data";
 
-const ORIGIN = "https://permasfalt59.ru";
+const ORIGIN = "https://asfalltperm.ru";
 const ROUTES = [
   { path: "/", priority: "1.0" },
   { path: "/services", priority: "0.9" },

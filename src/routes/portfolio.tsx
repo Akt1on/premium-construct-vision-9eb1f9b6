@@ -13,28 +13,34 @@ import after from "@/assets/after.jpg";
 export const Route = createFileRoute("/portfolio")({
   head: () => ({
     meta: [
-      { title: "Портфолио — Пермь Асфальт 59 · 2400+ объектов в Перми и крае" },
+      { title: "Портфолио — Асфальт Пермь · 2400+ объектов в Перми и крае" },
       { name: "description", content: "Реализованные проекты в Перми и Пермском крае: парковки, дворы, дороги, котлованы, благоустройство. Результаты до и после." },
-      { property: "og:title", content: "Портфолио Пермь Асфальт 59 в Перми" },
+      { property: "og:title", content: "Портфолио Асфальт Пермь в Перми" },
       { property: "og:description", content: "Более 2400 объектов в Перми и крае. Реальные кейсы, реальные цифры." },
-      { property: "og:url", content: "https://permasfalt59.ru/portfolio" },
+      { property: "og:url", content: "https://asfalltperm.ru/portfolio" },
     ],
-    links: [{ rel: "canonical", href: "https://permasfalt59.ru/portfolio" }],
+    links: [{ rel: "canonical", href: "https://asfalltperm.ru/portfolio" }],
   }),
   component: PortfolioPage,
 });
 
 const PROJECTS = [
-  { id: "1", img: p1, t: "Парковка ТЦ в Перми", c: "12 400 м²", y: "2024", h: "lg:row-span-2 lg:col-span-2", desc: "Полная замена покрытия двухуровневой парковки торгового центра в Перми. Работы выполнены за 18 ночей без остановки работы ТЦ." },
-  { id: "2", img: p2, t: "Котлован под ЖК в Перми", c: "3 200 м³", y: "2024", h: "", desc: "Разработка котлована под фундаментную плиту жилого комплекса в Перми. Геодезическое сопровождение, вывоз грунта." },
-  { id: "3", img: p4, t: "Реконструкция дороги в Пермском крае", c: "8.5 км", y: "2023", h: "", desc: "Капитальный ремонт участка краевой дороги. Фрезерование, укладка трёх слоёв асфальта, разметка." },
-  { id: "4", img: p3, t: "Благоустройство ЖК в Перми", c: "под ключ", y: "2023", h: "lg:col-span-2", desc: "Комплексное благоустройство дворовой территории жилого комплекса в Перми: тротуары, детская площадка, озеленение, освещение." },
-  { id: "5", img: p1, t: "Логистический комплекс в Перми", c: "25 000 м²", y: "2023", h: "", desc: "Асфальтирование территории логистического комплекса. Усиленное основание под большегрузный транспорт." },
-  { id: "6", img: p2, t: "Парковая зона в Перми", c: "1.2 га", y: "2022", h: "", desc: "Тротуарная плитка, дорожки из брусчатки, велодорожка. Малые архитектурные формы." },
+  { id: "1", img: p1, t: "Парковка ТЦ в Перми", c: "12 400 м²", y: "2024", cat: "Асфальтирование", h: "lg:row-span-2 lg:col-span-2", desc: "Полная замена покрытия двухуровневой парковки торгового центра в Перми. Работы выполнены за 18 ночей без остановки работы ТЦ." },
+  { id: "2", img: p2, t: "Котлован под ЖК в Перми", c: "3 200 м³", y: "2024", cat: "Земляные работы", h: "", desc: "Разработка котлована под фундаментную плиту жилого комплекса в Перми. Геодезическое сопровождение, вывоз грунта." },
+  { id: "3", img: p4, t: "Реконструкция дороги в Пермском крае", c: "8.5 км", y: "2023", cat: "Асфальтирование", h: "", desc: "Капитальный ремонт участка краевой дороги. Фрезерование, укладка трёх слоёв асфальта, разметка." },
+  { id: "4", img: p3, t: "Благоустройство ЖК в Перми", c: "под ключ", y: "2023", cat: "Благоустройство", h: "lg:col-span-2", desc: "Комплексное благоустройство дворовой территории жилого комплекса в Перми: тротуары, детская площадка, озеленение, освещение." },
+  { id: "5", img: p1, t: "Логистический комплекс в Перми", c: "25 000 м²", y: "2023", cat: "Асфальтирование", h: "", desc: "Асфальтирование территории логистического комплекса. Усиленное основание под большегрузный транспорт." },
+  { id: "6", img: p2, t: "Парковая зона в Перми", c: "1.2 га", y: "2022", cat: "Тротуарная плитка", h: "", desc: "Тротуарная плитка, дорожки из брусчатки, велодорожка. Малые архитектурные формы." },
 ] as const;
+
+const FILTERS = ["Все работы", "Асфальтирование", "Благоустройство", "Тротуарная плитка", "Земляные работы"] as const;
+
 
 function PortfolioPage() {
   const [open, setOpen] = useState<typeof PROJECTS[number] | null>(null);
+  const [filter, setFilter] = useState<typeof FILTERS[number]>("Все работы");
+  const visible = filter === "Все работы" ? PROJECTS : PROJECTS.filter((p) => p.cat === filter);
+
 
   return (
     <div className="relative">
@@ -66,17 +72,34 @@ function PortfolioPage() {
 
       <section className="py-20">
         <div className="mx-auto max-w-[1500px] px-6">
+          <div className="mb-10 flex flex-wrap gap-3">
+            {FILTERS.map((f) => (
+              <button
+                key={f}
+                onClick={() => setFilter(f)}
+                className={`rounded-sm border px-5 py-2.5 font-mono text-[11px] uppercase tracking-widest transition ${
+                  filter === f
+                    ? "border-ember bg-ember text-primary-foreground"
+                    : "border-white/10 text-muted-foreground hover:border-ember hover:text-foreground"
+                }`}
+              >
+                {f}
+              </button>
+            ))}
+          </div>
           <div className="grid auto-rows-[260px] grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-4">
-            {PROJECTS.map((it, i) => (
+            {visible.map((it, i) => (
               <motion.button
                 key={it.id}
                 onClick={() => setOpen(it)}
+                layout
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.6, delay: i * 0.06 }}
                 className={`group relative overflow-hidden bg-card text-left ${it.h}`}
               >
+
                 <img src={it.img} alt={it.t} loading="lazy" className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1.2s] group-hover:scale-110" />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
                 <div className="absolute inset-x-0 bottom-0 p-6">

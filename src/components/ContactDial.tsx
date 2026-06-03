@@ -2,9 +2,9 @@ import { useState, type ReactNode } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Phone, X, MessageCircle, Send } from "lucide-react";
 
-const PHONE = "+7 (342) 000-00-00";
-const PHONE_RAW = "+73420000000";
-const PHONE_DIGITS = "73420000000";
+const PHONE = "+7 (908) 251-82-26";
+const PHONE_RAW = "+79082518226";
+const PHONE_DIGITS = "79082518226";
 
 type Channel = {
   label: string;
