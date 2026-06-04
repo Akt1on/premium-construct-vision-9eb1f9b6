@@ -122,8 +122,8 @@ function Hero() {
           <span>15+ лет на рынке</span>
         </div>
 
-        <h1 className="text-display mt-6 text-[clamp(2.25rem,12vw,11rem)] leading-[0.95] tracking-[-0.02em] text-foreground [text-wrap:balance]">
-          <span className="block break-words hyphens-auto">Асфальтирование</span>
+        <h1 className="text-display mt-6 text-[clamp(1.85rem,8.5vw,11rem)] leading-[0.95] tracking-[-0.02em] text-foreground">
+          <span className="block whitespace-nowrap">Асфальтирование</span>
           <motion.span
             initial={{ opacity: 0, x: -40 }}
             animate={{ opacity: 1, x: 0 }}
