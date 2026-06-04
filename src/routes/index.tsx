@@ -123,27 +123,15 @@ function Hero() {
         </div>
 
         <h1 className="text-display mt-6 text-[clamp(1.85rem,8.5vw,11rem)] leading-[0.95] tracking-[-0.02em] text-foreground">
-          <span className="block whitespace-nowrap">Асфальтирование</span>
-          <motion.span
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.9, delay: 0.15 }}
-            className="block sm:translate-x-[6vw]"
-          >
+          <span className="block whitespace-nowrap animate-hero-rise">Асфальтирование</span>
+          <span className="block sm:translate-x-[6vw] animate-hero-rise [animation-delay:0.12s]">
             <span className="bg-gradient-to-r from-foreground via-foreground to-ember bg-clip-text text-transparent">в&nbsp;Перми.</span>
-          </motion.span>
-          <motion.span
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.4 }}
-            className="mt-4 flex flex-wrap items-baseline gap-x-4 gap-y-2 text-[clamp(1rem,4.5vw,2.5rem)] font-display font-light tracking-tight text-muted-foreground sm:gap-x-6"
-          >
+          </span>
+          <span className="mt-4 flex flex-wrap items-baseline gap-x-4 gap-y-2 text-[clamp(1rem,4.5vw,2.5rem)] font-display font-light tracking-tight text-muted-foreground sm:gap-x-6 animate-hero-rise [animation-delay:0.24s]">
             <span className="text-foreground/90">Профессионально.</span>
             <span className="text-steel">Быстро.</span>
             <span className="text-ember">Надёжно.</span>
-          </motion.span>
+          </span>
         </h1>
 
         <div className="mt-12 flex flex-wrap items-center gap-6">
