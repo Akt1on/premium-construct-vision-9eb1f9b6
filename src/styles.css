@@ -233,4 +233,16 @@
     80% { clip-path: inset(10% 0 80% 0); transform: translate(1px, -2px); }
   }
   .hover\:animate-glitch:hover { animation: glitch 0.6s steps(2) infinite; }
+
+  @keyframes hero-rise {
+    0% { opacity: 0; transform: translateY(14px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  .animate-hero-rise {
+    opacity: 0;
+    animation: hero-rise 0.8s cubic-bezier(.22,1,.36,1) forwards;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .animate-hero-rise { opacity: 1; animation: none; }
+  }
 }
