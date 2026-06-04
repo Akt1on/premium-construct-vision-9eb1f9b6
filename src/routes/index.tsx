@@ -44,7 +44,10 @@ export const Route = createFileRoute("/")({
       { property: "og:url", content: "https://asfalltperm.ru/" },
       { property: "og:type", content: "website" },
     ],
-    links: [{ rel: "canonical", href: "https://asfalltperm.ru/" }],
+    links: [
+      { rel: "canonical", href: "https://asfalltperm.ru/" },
+      { rel: "preload", as: "image", href: heroImg, fetchpriority: "high" },
+    ],
     scripts: [{
       type: "application/ld+json",
       children: JSON.stringify({
