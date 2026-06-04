@@ -126,17 +126,19 @@ function Hero() {
           <span className="block whitespace-nowrap">Асфальтирование</span>
           <motion.span
             initial={{ opacity: 0, x: -40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.9, delay: 0.2 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.9, delay: 0.15 }}
             className="block sm:translate-x-[6vw]"
           >
             <span className="bg-gradient-to-r from-foreground via-foreground to-ember bg-clip-text text-transparent">в&nbsp;Перми.</span>
           </motion.span>
           <motion.span
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.6, staggerChildren: 0.1 }}
-            className="mt-4 flex flex-wrap items-baseline gap-x-4 gap-y-2 text-[clamp(1rem,3vw,2.5rem)] font-display font-light tracking-tight text-muted-foreground sm:gap-x-6"
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.4 }}
+            className="mt-4 flex flex-wrap items-baseline gap-x-4 gap-y-2 text-[clamp(1rem,4.5vw,2.5rem)] font-display font-light tracking-tight text-muted-foreground sm:gap-x-6"
           >
             <span className="text-foreground/90">Профессионально.</span>
             <span className="text-steel">Быстро.</span>
