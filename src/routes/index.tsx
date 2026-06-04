@@ -122,13 +122,13 @@ function Hero() {
           <span>15+ лет на рынке</span>
         </div>
 
-        <h1 className="text-display mt-6 text-[clamp(3rem,11vw,11rem)] text-foreground">
-          <span className="block">Асфальтирование</span>
+        <h1 className="text-display mt-6 text-[clamp(2.25rem,12vw,11rem)] leading-[0.95] tracking-[-0.02em] text-foreground [text-wrap:balance]">
+          <span className="block break-words hyphens-auto">Асфальтирование</span>
           <motion.span
             initial={{ opacity: 0, x: -40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.9, delay: 0.2 }}
-            className="block translate-x-[6vw]"
+            className="block sm:translate-x-[6vw]"
           >
             <span className="bg-gradient-to-r from-foreground via-foreground to-ember bg-clip-text text-transparent">в&nbsp;Перми.</span>
           </motion.span>
@@ -136,7 +136,7 @@ function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6, staggerChildren: 0.1 }}
-            className="mt-4 flex flex-wrap items-baseline gap-x-6 gap-y-2 text-[clamp(1rem,3vw,2.5rem)] font-display font-light tracking-tight text-muted-foreground"
+            className="mt-4 flex flex-wrap items-baseline gap-x-4 gap-y-2 text-[clamp(1rem,3vw,2.5rem)] font-display font-light tracking-tight text-muted-foreground sm:gap-x-6"
           >
             <span className="text-foreground/90">Профессионально.</span>
             <span className="text-steel">Быстро.</span>

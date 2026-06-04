@@ -12,7 +12,7 @@ export function SiteFooter() {
               <div className="absolute inset-0 rotate-45 bg-ember" />
               <div className="absolute inset-[3px] rotate-45 bg-background" />
             </div>
-            <div className="font-display text-xl font-black">ПЕРМЬ АСФАЛЬТ 59</div>
+            <div className="font-display text-xl font-black">АСФАЛЬТ ПЕРМЬ</div>
           </div>
           <p className="mt-6 max-w-md text-sm text-muted-foreground">
             Асфальтирование, благоустройство и земляные работы в Перми и Пермском крае.
