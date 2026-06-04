@@ -36,7 +36,7 @@ export function SiteHeader() {
               <div className="absolute inset-0 grid place-items-center font-display text-lg font-black text-foreground">59</div>
             </div>
             <div className="leading-tight">
-              <div className="font-display text-sm font-black tracking-tight">ПЕРМЬ АСФАЛЬТ 59</div>
+              <div className="font-display text-sm font-black tracking-tight">АСФАЛЬТ ПЕРМЬ</div>
               <div className="font-mono text-[10px] uppercase text-muted-foreground">est. 2010 · Пермь · асфальт</div>
             </div>
           </Link>
