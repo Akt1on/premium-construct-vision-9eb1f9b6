@@ -31,9 +31,9 @@ export function SiteHeader() {
         <div className={`flex items-center justify-between rounded-sm border border-white/5 px-4 py-3 transition-all ${scrolled ? "glass" : "bg-transparent"}`}>
           <Link to="/" className="group flex items-center gap-3">
             <div className="relative h-9 w-9">
-              <div className="absolute inset-0 rotate-45 bg-ember" />
+              <div className="absolute inset-0 rotate-45 bg-gradient-to-br from-ember to-ember/70" />
               <div className="absolute inset-[3px] rotate-45 bg-background" />
-              <div className="absolute inset-0 grid place-items-center font-display text-lg font-black text-foreground">59</div>
+              <div className="absolute inset-0 grid place-items-center font-display text-xl font-black leading-none text-ember">А</div>
             </div>
             <div className="leading-tight">
               <div className="font-display text-sm font-black tracking-tight">АСФАЛЬТ ПЕРМЬ</div>
