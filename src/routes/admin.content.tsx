@@ -145,7 +145,7 @@ function useRows<T extends { id: string }>(table: "services" | "projects" | "fle
   const load = useCallback(async () => {
     const { data, error } = await supabase.from(table).select("*").order(order, { ascending: true });
     if (error) { toast.error("Ошибка загрузки: " + error.message); return; }
-    setRows((data ?? []) as T[]);
+    setRows((data ?? []) as unknown as T[]);
     setLoaded(true);
   }, [table, order]);
   useEffect(() => { load(); }, [load]);
