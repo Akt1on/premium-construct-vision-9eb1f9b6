@@ -61,7 +61,10 @@ function AdminPage() {
             <h1 className="mt-2 text-display text-4xl font-black md:text-5xl">Заявки</h1>
             <p className="mt-1 text-sm text-muted-foreground">{user.email}</p>
           </div>
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
+            <Link to="/admin/content" className="inline-flex items-center gap-2 rounded-sm border border-ember/40 bg-ember/10 px-4 py-2 font-mono text-xs uppercase tracking-widest text-ember hover:bg-ember/20">
+              <Settings className="h-4 w-4" /> Контент сайта
+            </Link>
             <button onClick={load} disabled={refreshing} className="inline-flex items-center gap-2 rounded-sm border border-white/10 px-4 py-2 font-mono text-xs uppercase tracking-widest hover:border-ember">
               <RefreshCw className={`h-4 w-4 ${refreshing ? "animate-spin" : ""}`} /> Обновить
             </button>
