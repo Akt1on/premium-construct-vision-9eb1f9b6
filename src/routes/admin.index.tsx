@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/use-auth";
 import type { Database } from "@/integrations/supabase/types";
-import { LogOut, Phone, Mail, MessageSquare, Calculator, RefreshCw } from "lucide-react";
+import { LogOut, Phone, Mail, MessageSquare, Calculator, RefreshCw, Settings } from "lucide-react";
 import { toast } from "sonner";
 
 type Lead = Database["public"]["Tables"]["leads"]["Row"];
