@@ -216,7 +216,8 @@ function ProjectsManager() {
     setSaving(row.id);
     const { error } = await supabase.from("projects").update({
       title: row.title, category: row.category, description: row.description,
-      image_url: row.image_url, before_url: row.before_url, after_url: row.after_url, sort_order: row.sort_order,
+      image_url: row.image_url, before_url: row.before_url, after_url: row.after_url,
+      year: row.year, metric: row.metric, sort_order: row.sort_order,
     }).eq("id", row.id);
     setSaving(null);
     error ? toast.error(error.message) : toast.success("Сохранено");
