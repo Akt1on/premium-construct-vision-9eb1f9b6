@@ -87,8 +87,15 @@ export const Route = createFileRoute("/services/$slug")({
 });
 
 function ServiceDetailPage() {
-  const { service: s } = Route.useLoaderData() as { service: Service };
+  const { service: base } = Route.useLoaderData() as { service: Service };
+  const { data: db } = useServices();
+  const row = db?.find((r) => r.slug === base.slug);
+  // Overlay editable fields (photo, price, title, intro) from the database.
+  const s: Service = row
+    ? { ...base, title: row.title || base.title, img: row.image_url || base.img, price: row.price_text || base.price, body: row.description || base.body }
+    : base;
   const related = SERVICES.filter((x) => x.slug !== s.slug).slice(0, 3);
+
 
   return (
     <div className="relative">
