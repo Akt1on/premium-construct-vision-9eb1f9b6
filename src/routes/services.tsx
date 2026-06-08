@@ -21,8 +21,17 @@ export const Route = createFileRoute("/services")({
 // Service data lives in src/lib/services-data.ts
 
 function ServicesPage() {
+  const { data: db } = useServices();
+  // Overlay editable fields (photo, price, title, intro) from the database.
+  const list: Service[] = SERVICES.map((s) => {
+    const row = db?.find((r) => r.slug === s.slug);
+    return row
+      ? { ...s, title: row.title || s.title, img: row.image_url || s.img, price: row.price_text || s.price, body: row.description || s.body }
+      : s;
+  });
   return (
     <div className="relative">
+
       <section className="relative overflow-hidden pt-40 pb-24">
         <div className="absolute inset-0 -z-10 bg-mesh opacity-50" />
         <div className="absolute inset-0 -z-10 grid-bg opacity-30" />
