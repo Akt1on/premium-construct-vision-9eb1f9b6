@@ -47,9 +47,10 @@ function ServicesPage() {
         </div>
       </section>
 
-      {SERVICES.map((c, i) => (
+      {list.map((c, i) => (
         <Chapter key={c.n} chapter={c} reversed={i % 2 === 1} />
       ))}
+
 
       <section className="relative overflow-hidden border-t border-white/5 py-32">
         <div className="absolute inset-0 -z-10 bg-mesh opacity-40" />
