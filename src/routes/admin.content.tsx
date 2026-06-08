@@ -261,7 +261,7 @@ function FleetManager() {
   const { rows, setRows, loaded, reload } = useRows<Flt>("fleet");
   const [saving, setSaving] = useState<string | null>(null);
   const update = (id: string, patch: Partial<Flt>) => setRows((r) => r.map((x) => (x.id === id ? { ...x, ...patch } : x)));
-  const save = async (row: Flt) => { setSaving(row.id); const { error } = await supabase.from("fleet").update({ name: row.name, specs: row.specs, image_url: row.image_url, sort_order: row.sort_order }).eq("id", row.id); setSaving(null); error ? toast.error(error.message) : toast.success("Сохранено"); };
+  const save = async (row: Flt) => { setSaving(row.id); const { error } = await supabase.from("fleet").update({ name: row.name, specs: row.specs, image_url: row.image_url, price_text: row.price_text, category: row.category, sort_order: row.sort_order }).eq("id", row.id); setSaving(null); error ? toast.error(error.message) : toast.success("Сохранено"); };
   const del = async (id: string) => { if (!confirm("Удалить технику?")) return; const { error } = await supabase.from("fleet").delete().eq("id", id); error ? toast.error(error.message) : (toast.success("Удалено"), reload()); };
   const add = async () => { const { error } = await supabase.from("fleet").insert({ name: "Новая техника", sort_order: rows.length + 1 }); error ? toast.error(error.message) : reload(); };
 
