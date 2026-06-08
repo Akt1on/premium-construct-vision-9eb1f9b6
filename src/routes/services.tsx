@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "motion/react";
 import { ArrowUpRight, CheckCircle2 } from "lucide-react";
 import { SERVICES, type Service } from "@/lib/services-data";
+import { useServices } from "@/lib/content";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
