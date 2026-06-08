@@ -2,6 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { motion } from "motion/react";
 import { ArrowUpRight, ArrowLeft, CheckCircle2, Phone } from "lucide-react";
 import { getService, SERVICES, type Service } from "@/lib/services-data";
+import { useServices } from "@/lib/content";
 
 export const Route = createFileRoute("/services/$slug")({
   loader: ({ params }) => {
