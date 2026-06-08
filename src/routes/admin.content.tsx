@@ -272,8 +272,13 @@ function FleetManager() {
         <RowCard key={row.id} saving={saving === row.id} onSave={() => save(row)} onDelete={() => del(row.id)}>
           <ImageField label="Фото" value={row.image_url ?? ""} onChange={(v) => update(row.id, { image_url: v })} folder="fleet" />
           <Field label="Название" value={row.name} onChange={(v) => update(row.id, { name: v })} />
+          <div className="grid grid-cols-2 gap-3">
+            <Field label="Категория" value={row.category ?? ""} onChange={(v) => update(row.id, { category: v })} />
+            <Field label="Цена" value={row.price_text ?? ""} onChange={(v) => update(row.id, { price_text: v })} />
+          </div>
           <Field label="Характеристики" value={row.specs ?? ""} onChange={(v) => update(row.id, { specs: v })} textarea />
           <Field label="Порядок" value={String(row.sort_order)} onChange={(v) => update(row.id, { sort_order: Number(v) || 0 })} />
+
         </RowCard>
       ))}
       <button onClick={add} className="grid min-h-[120px] place-items-center rounded-sm border border-dashed border-white/15 text-muted-foreground hover:border-ember hover:text-ember">
