@@ -238,7 +238,7 @@ function Services() {
         </div>
 
         <div className="mt-20 grid gap-px bg-white/5 md:grid-cols-2 lg:grid-cols-3">
-          {SERVICES.map((s, i) => (
+          {list.map((s, i) => (
             <motion.div
               key={s.title}
               initial={{ opacity: 0, y: 40 }}
