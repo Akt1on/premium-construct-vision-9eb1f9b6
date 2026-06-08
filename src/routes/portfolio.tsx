@@ -1,14 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion, AnimatePresence } from "motion/react";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { ArrowUpRight, X } from "lucide-react";
 import { BeforeAfter } from "@/components/BeforeAfter";
-import p1 from "@/assets/project1.jpg";
-import p2 from "@/assets/project2.jpg";
-import p3 from "@/assets/project3.jpg";
-import p4 from "@/assets/project4.jpg";
-import before from "@/assets/before.jpg";
-import after from "@/assets/after.jpg";
+import { useProjects } from "@/lib/content";
 
 export const Route = createFileRoute("/portfolio")({
   head: () => ({
@@ -24,23 +19,56 @@ export const Route = createFileRoute("/portfolio")({
   component: PortfolioPage,
 });
 
-const PROJECTS = [
-  { id: "1", img: p1, t: "Парковка ТЦ в Перми", c: "12 400 м²", y: "2024", cat: "Асфальтирование", h: "lg:row-span-2 lg:col-span-2", desc: "Полная замена покрытия двухуровневой парковки торгового центра в Перми. Работы выполнены за 18 ночей без остановки работы ТЦ." },
-  { id: "2", img: p2, t: "Котлован под ЖК в Перми", c: "3 200 м³", y: "2024", cat: "Земляные работы", h: "", desc: "Разработка котлована под фундаментную плиту жилого комплекса в Перми. Геодезическое сопровождение, вывоз грунта." },
-  { id: "3", img: p4, t: "Реконструкция дороги в Пермском крае", c: "8.5 км", y: "2023", cat: "Асфальтирование", h: "", desc: "Капитальный ремонт участка краевой дороги. Фрезерование, укладка трёх слоёв асфальта, разметка." },
-  { id: "4", img: p3, t: "Благоустройство ЖК в Перми", c: "под ключ", y: "2023", cat: "Благоустройство", h: "lg:col-span-2", desc: "Комплексное благоустройство дворовой территории жилого комплекса в Перми: тротуары, детская площадка, озеленение, освещение." },
-  { id: "5", img: p1, t: "Логистический комплекс в Перми", c: "25 000 м²", y: "2023", cat: "Асфальтирование", h: "", desc: "Асфальтирование территории логистического комплекса. Усиленное основание под большегрузный транспорт." },
-  { id: "6", img: p2, t: "Парковая зона в Перми", c: "1.2 га", y: "2022", cat: "Тротуарная плитка", h: "", desc: "Тротуарная плитка, дорожки из брусчатки, велодорожка. Малые архитектурные формы." },
-] as const;
+type Project = {
+  id: string;
+  img: string;
+  t: string;
+  c: string;
+  y: string;
+  cat: string;
+  h: string;
+  desc: string;
+  before: string | null;
+  after: string | null;
+};
 
-const FILTERS = ["Все работы", "Асфальтирование", "Благоустройство", "Тротуарная плитка", "Земляные работы"] as const;
+const FALLBACK: Project[] = [
+  { id: "1", img: "/content/project1.jpg", t: "Парковка ТЦ в Перми", c: "12 400 м²", y: "2024", cat: "Асфальтирование", h: "lg:row-span-2 lg:col-span-2", desc: "Полная замена покрытия двухуровневой парковки торгового центра в Перми. Работы выполнены за 18 ночей без остановки работы ТЦ.", before: "/content/before.jpg", after: "/content/after.jpg" },
+  { id: "2", img: "/content/project2.jpg", t: "Котлован под ЖК в Перми", c: "3 200 м³", y: "2024", cat: "Земляные работы", h: "", desc: "Разработка котлована под фундаментную плиту жилого комплекса в Перми. Геодезическое сопровождение, вывоз грунта.", before: null, after: null },
+  { id: "3", img: "/content/project4.jpg", t: "Реконструкция дороги в Пермском крае", c: "8.5 км", y: "2023", cat: "Асфальтирование", h: "", desc: "Капитальный ремонт участка краевой дороги. Фрезерование, укладка трёх слоёв асфальта, разметка.", before: null, after: null },
+  { id: "4", img: "/content/project3.jpg", t: "Благоустройство ЖК в Перми", c: "под ключ", y: "2023", cat: "Благоустройство", h: "lg:col-span-2", desc: "Комплексное благоустройство дворовой территории жилого комплекса в Перми: тротуары, детская площадка, озеленение, освещение.", before: null, after: null },
+  { id: "5", img: "/content/project1.jpg", t: "Логистический комплекс в Перми", c: "25 000 м²", y: "2023", cat: "Асфальтирование", h: "", desc: "Асфальтирование территории логистического комплекса. Усиленное основание под большегрузный транспорт.", before: null, after: null },
+  { id: "6", img: "/content/project2.jpg", t: "Парковая зона в Перми", c: "1.2 га", y: "2022", cat: "Тротуарная плитка", h: "", desc: "Тротуарная плитка, дорожки из брусчатки, велодорожка. Малые архитектурные формы.", before: null, after: null },
+];
 
+const SPANS = ["lg:row-span-2 lg:col-span-2", "", "", "lg:col-span-2", "", ""];
 
 function PortfolioPage() {
-  const [open, setOpen] = useState<typeof PROJECTS[number] | null>(null);
-  const [filter, setFilter] = useState<typeof FILTERS[number]>("Все работы");
-  const visible = filter === "Все работы" ? PROJECTS : PROJECTS.filter((p) => p.cat === filter);
+  const { data: db } = useProjects();
+  const [open, setOpen] = useState<Project | null>(null);
+  const [filter, setFilter] = useState<string>("Все работы");
 
+  const projects: Project[] = useMemo(() => {
+    if (db && db.length) {
+      return db.map((p, i) => ({
+        id: p.id,
+        img: p.image_url || "/content/project1.jpg",
+        t: p.title,
+        c: p.metric || "",
+        y: p.year || "",
+        cat: p.category || "Прочее",
+        h: SPANS[i % SPANS.length],
+        desc: p.description || "",
+        before: p.before_url,
+        after: p.after_url,
+      }));
+    }
+    return FALLBACK;
+  }, [db]);
+
+  const filters = useMemo(() => ["Все работы", ...Array.from(new Set(projects.map((p) => p.cat)))], [projects]);
+  const visible = filter === "Все работы" ? projects : projects.filter((p) => p.cat === filter);
+  const beforeAfter = projects.find((p) => p.before && p.after);
 
   return (
     <div className="relative">
@@ -59,21 +87,23 @@ function PortfolioPage() {
         </div>
       </section>
 
-      <section className="border-t border-white/5 py-16">
-        <div className="mx-auto max-w-[1500px] px-6">
-          <div className="font-mono text-[11px] uppercase tracking-[0.3em] text-ember">/ до · после</div>
-          <h2 className="mt-4 text-display text-[clamp(2rem,5vw,4rem)]">Разница, которую видно.</h2>
-          <div className="mt-10">
-            <BeforeAfter before={before} after={after} alt="Реконструкция парковки в Перми" />
-            <p className="mt-4 font-mono text-[11px] uppercase tracking-widest text-muted-foreground">Парковка БЦ в Перми · 4 800 м² · 6 дней работ</p>
+      {beforeAfter?.before && beforeAfter?.after && (
+        <section className="border-t border-white/5 py-16">
+          <div className="mx-auto max-w-[1500px] px-6">
+            <div className="font-mono text-[11px] uppercase tracking-[0.3em] text-ember">/ до · после</div>
+            <h2 className="mt-4 text-display text-[clamp(2rem,5vw,4rem)]">Разница, которую видно.</h2>
+            <div className="mt-10">
+              <BeforeAfter before={beforeAfter.before} after={beforeAfter.after} alt={beforeAfter.t} />
+              <p className="mt-4 font-mono text-[11px] uppercase tracking-widest text-muted-foreground">{[beforeAfter.t, beforeAfter.c, beforeAfter.y].filter(Boolean).join(" · ")}</p>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       <section className="py-20">
         <div className="mx-auto max-w-[1500px] px-6">
           <div className="mb-10 flex flex-wrap gap-3">
-            {FILTERS.map((f) => (
+            {filters.map((f) => (
               <button
                 key={f}
                 onClick={() => setFilter(f)}
@@ -99,11 +129,10 @@ function PortfolioPage() {
                 transition={{ duration: 0.6, delay: i * 0.06 }}
                 className={`group relative overflow-hidden bg-card text-left ${it.h}`}
               >
-
                 <img src={it.img} alt={it.t} loading="lazy" className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1.2s] group-hover:scale-110" />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
                 <div className="absolute inset-x-0 bottom-0 p-6">
-                  <div className="font-mono text-[10px] uppercase tracking-widest text-ember">{it.c} · {it.y}</div>
+                  <div className="font-mono text-[10px] uppercase tracking-widest text-ember">{[it.c, it.y].filter(Boolean).join(" · ")}</div>
                   <h3 className="mt-2 font-display text-xl font-bold transition group-hover:text-ember md:text-2xl">{it.t}</h3>
                 </div>
                 <div className="absolute right-4 top-4 grid h-10 w-10 place-items-center rounded-full border border-white/20 backdrop-blur-md opacity-0 transition group-hover:opacity-100">
@@ -136,7 +165,7 @@ function PortfolioPage() {
               </button>
               <img src={open.img} alt={open.t} className="aspect-[16/9] w-full object-cover" />
               <div className="p-8 md:p-12">
-                <div className="font-mono text-[11px] uppercase tracking-widest text-ember">{open.c} · {open.y}</div>
+                <div className="font-mono text-[11px] uppercase tracking-widest text-ember">{[open.c, open.y].filter(Boolean).join(" · ")}</div>
                 <h3 className="mt-3 text-display text-3xl md:text-5xl">{open.t}</h3>
                 <p className="mt-6 text-lg text-muted-foreground">{open.desc}</p>
                 <Link to="/contacts" className="mt-8 inline-flex items-center gap-3 rounded-sm bg-ember px-6 py-4 font-display text-sm font-bold uppercase tracking-wider text-primary-foreground">
