@@ -4,6 +4,7 @@ import { useState } from "react";
 import { z } from "zod";
 import { Phone, Mail, MapPin, Clock, ArrowUpRight, CheckCircle2 } from "lucide-react";
 import { submitLead } from "@/lib/leads";
+import { useSettings } from "@/lib/content";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/contacts")({
