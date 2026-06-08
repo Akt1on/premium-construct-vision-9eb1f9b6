@@ -199,6 +199,24 @@ function Stats() {
 }
 
 function Services() {
+  const { data: db } = useServices();
+  // Overlay DB photos/titles onto the curated marketing copy by slug.
+  const cards = SERVICES.map((s) => {
+    const row = db?.find((r) => r.slug === s.slug);
+    return row ? { ...s, title: row.title || s.title, img: row.image_url || s.img } : s;
+  });
+  // Append any extra services created in the admin panel.
+  const extras = (db ?? [])
+    .filter((r) => !SERVICES.some((s) => s.slug === r.slug))
+    .map((r) => ({
+      icon: ICONS[r.slug] ?? Layers,
+      title: r.title,
+      desc: r.description ?? r.price_text ?? "",
+      tag: String(r.sort_order).padStart(2, "0"),
+      slug: r.slug,
+      img: r.image_url ?? "/content/paver.jpg",
+    }));
+  const list = [...cards, ...extras];
   return (
     <section className="relative overflow-hidden py-32">
       <div className="absolute inset-0 -z-10 bg-mesh opacity-60" />
