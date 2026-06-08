@@ -255,7 +255,7 @@ function ProjectsManager() {
 
 /* ---------- FLEET ---------- */
 
-type Flt = { id: string; name: string; specs: string | null; image_url: string | null; sort_order: number; is_active: boolean };
+type Flt = { id: string; name: string; specs: string | null; image_url: string | null; price_text: string | null; category: string | null; sort_order: number; is_active: boolean };
 
 function FleetManager() {
   const { rows, setRows, loaded, reload } = useRows<Flt>("fleet");
