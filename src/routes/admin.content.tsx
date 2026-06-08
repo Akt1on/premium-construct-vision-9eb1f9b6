@@ -232,7 +232,12 @@ function ProjectsManager() {
         <RowCard key={row.id} saving={saving === row.id} onSave={() => save(row)} onDelete={() => del(row.id)}>
           <Field label="Название" value={row.title} onChange={(v) => update(row.id, { title: v })} />
           <Field label="Категория" value={row.category ?? ""} onChange={(v) => update(row.id, { category: v })} />
+          <div className="grid grid-cols-2 gap-3">
+            <Field label="Показатель (площадь/объём)" value={row.metric ?? ""} onChange={(v) => update(row.id, { metric: v })} />
+            <Field label="Год" value={row.year ?? ""} onChange={(v) => update(row.id, { year: v })} />
+          </div>
           <Field label="Описание" value={row.description ?? ""} onChange={(v) => update(row.id, { description: v })} textarea />
+
           <div className="grid grid-cols-2 gap-3">
             <ImageField label="Фото «До»" value={row.before_url ?? ""} onChange={(v) => update(row.id, { before_url: v })} folder="projects" />
             <ImageField label="Фото «После»" value={row.after_url ?? ""} onChange={(v) => update(row.id, { after_url: v })} folder="projects" />
