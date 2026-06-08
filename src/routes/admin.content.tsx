@@ -205,7 +205,7 @@ function ServicesManager() {
 
 /* ---------- PROJECTS ---------- */
 
-type Prj = { id: string; title: string; category: string | null; description: string | null; image_url: string | null; before_url: string | null; after_url: string | null; sort_order: number; is_active: boolean };
+type Prj = { id: string; title: string; category: string | null; description: string | null; image_url: string | null; before_url: string | null; after_url: string | null; year: string | null; metric: string | null; sort_order: number; is_active: boolean };
 
 function ProjectsManager() {
   const { rows, setRows, loaded, reload } = useRows<Prj>("projects");
