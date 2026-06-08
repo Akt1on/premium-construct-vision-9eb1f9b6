@@ -319,13 +319,24 @@ function Process() {
   );
 }
 
+const PROJECTS_FALLBACK = [
+  { img: "/content/project1.jpg", t: "Парковка ТЦ в Перми", c: "12 400 м² · 2024", h: "lg:row-span-2 lg:col-span-2" },
+  { img: "/content/project2.jpg", t: "Котлован под ЖК в Перми", c: "3 200 м³ · 2024", h: "" },
+  { img: "/content/project4.jpg", t: "Реконструкция дороги в Пермском крае", c: "8.5 км · 2023", h: "" },
+  { img: "/content/project3.jpg", t: "Благоустройство ЖК в Перми", c: "под ключ · 2023", h: "lg:col-span-2" },
+];
+
 function Projects() {
-  const items = [
-    { img: p1, t: "Парковка ТЦ «Метрополис»", c: "12 400 м² · 2024", h: "lg:row-span-2 lg:col-span-2" },
-    { img: p2, t: "Котлован под ЖК «Северный»", c: "3 200 м³ · 2024", h: "" },
-    { img: p4, t: "Реконструкция М-7", c: "8.5 км · 2023", h: "" },
-    { img: p3, t: "Благоустройство ЖК «Алые Паруса»", c: "под ключ · 2023", h: "lg:col-span-2" },
-  ];
+  const { data: db } = useProjects();
+  const spans = ["lg:row-span-2 lg:col-span-2", "", "", "lg:col-span-2"];
+  const items = db && db.length
+    ? db.slice(0, 4).map((p, i) => ({
+        img: p.image_url ?? "/content/project1.jpg",
+        t: p.title,
+        c: [p.metric, p.year].filter(Boolean).join(" · "),
+        h: spans[i] ?? "",
+      }))
+    : PROJECTS_FALLBACK;
   return (
     <section className="relative py-32">
       <div className="mx-auto max-w-[1500px] px-6">
