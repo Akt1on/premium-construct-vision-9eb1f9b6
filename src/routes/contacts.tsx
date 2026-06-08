@@ -31,6 +31,11 @@ function ContactsPage() {
   const [sent, setSent] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(false);
+  const { data: settings } = useSettings();
+  const phone = settings?.phone || "+7 (908) 251-82-26";
+  const phoneTel = "tel:+" + phone.replace(/[^\d]/g, "");
+  const email = settings?.email || "info@asfalltperm.ru";
+  const address = settings?.address || "г. Пермь, Пермский край";
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
