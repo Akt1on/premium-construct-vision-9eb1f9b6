@@ -4,6 +4,7 @@ import { useState } from "react";
 import { z } from "zod";
 import { Phone, Mail, MapPin, Clock, ArrowUpRight, CheckCircle2 } from "lucide-react";
 import { submitLead } from "@/lib/leads";
+import { useSettings } from "@/lib/content";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/contacts")({
@@ -30,6 +31,11 @@ function ContactsPage() {
   const [sent, setSent] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(false);
+  const { data: settings } = useSettings();
+  const phone = settings?.phone || "+7 (908) 251-82-26";
+  const phoneTel = "tel:+" + phone.replace(/[^\d]/g, "");
+  const email = settings?.email || "info@asfalltperm.ru";
+  const address = settings?.address || "г. Пермь, Пермский край";
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -75,10 +81,11 @@ function ContactsPage() {
         <div className="mt-20 grid gap-12 lg:grid-cols-12">
           <div className="space-y-8 lg:col-span-5">
             {[
-              { i: Phone, l: "Телефон · 24/7", v: "+7 (908) 251-82-26", h: "tel:+79082518226" },
-              { i: Mail, l: "Email", v: "info@asfalltperm.ru", h: "mailto:info@asfalltperm.ru" },
-              { i: MapPin, l: "Офис", v: "г. Пермь, Пермский край" },
+              { i: Phone, l: "Телефон · 24/7", v: phone, h: phoneTel },
+              { i: Mail, l: "Email", v: email, h: `mailto:${email}` },
+              { i: MapPin, l: "Офис", v: address },
               { i: Clock, l: "График", v: "Пн–Вс · круглосуточно" },
+
             ].map((c) => (
               <a
                 key={c.l}

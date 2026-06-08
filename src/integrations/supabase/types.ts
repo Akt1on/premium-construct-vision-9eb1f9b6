@@ -16,31 +16,37 @@ export type Database = {
     Tables: {
       fleet: {
         Row: {
+          category: string | null
           created_at: string
           id: string
           image_url: string | null
           is_active: boolean
           name: string
+          price_text: string | null
           sort_order: number
           specs: string | null
           updated_at: string
         }
         Insert: {
+          category?: string | null
           created_at?: string
           id?: string
           image_url?: string | null
           is_active?: boolean
           name: string
+          price_text?: string | null
           sort_order?: number
           specs?: string | null
           updated_at?: string
         }
         Update: {
+          category?: string | null
           created_at?: string
           id?: string
           image_url?: string | null
           is_active?: boolean
           name?: string
+          price_text?: string | null
           sort_order?: number
           specs?: string | null
           updated_at?: string
@@ -93,9 +99,11 @@ export type Database = {
           id: string
           image_url: string | null
           is_active: boolean
+          metric: string | null
           sort_order: number
           title: string
           updated_at: string
+          year: string | null
         }
         Insert: {
           after_url?: string | null
@@ -106,9 +114,11 @@ export type Database = {
           id?: string
           image_url?: string | null
           is_active?: boolean
+          metric?: string | null
           sort_order?: number
           title: string
           updated_at?: string
+          year?: string | null
         }
         Update: {
           after_url?: string | null
@@ -119,9 +129,11 @@ export type Database = {
           id?: string
           image_url?: string | null
           is_active?: boolean
+          metric?: string | null
           sort_order?: number
           title?: string
           updated_at?: string
+          year?: string | null
         }
         Relationships: []
       }

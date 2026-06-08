@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "motion/react";
 import { ArrowUpRight, CheckCircle2 } from "lucide-react";
 import { SERVICES, type Service } from "@/lib/services-data";
+import { useServices } from "@/lib/content";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
@@ -20,8 +21,17 @@ export const Route = createFileRoute("/services")({
 // Service data lives in src/lib/services-data.ts
 
 function ServicesPage() {
+  const { data: db } = useServices();
+  // Overlay editable fields (photo, price, title, intro) from the database.
+  const list: Service[] = SERVICES.map((s) => {
+    const row = db?.find((r) => r.slug === s.slug);
+    return row
+      ? { ...s, title: row.title || s.title, img: row.image_url || s.img, price: row.price_text || s.price, body: row.description || s.body }
+      : s;
+  });
   return (
     <div className="relative">
+
       <section className="relative overflow-hidden pt-40 pb-24">
         <div className="absolute inset-0 -z-10 bg-mesh opacity-50" />
         <div className="absolute inset-0 -z-10 grid-bg opacity-30" />
@@ -37,9 +47,10 @@ function ServicesPage() {
         </div>
       </section>
 
-      {SERVICES.map((c, i) => (
+      {list.map((c, i) => (
         <Chapter key={c.n} chapter={c} reversed={i % 2 === 1} />
       ))}
+
 
       <section className="relative overflow-hidden border-t border-white/5 py-32">
         <div className="absolute inset-0 -z-10 bg-mesh opacity-40" />

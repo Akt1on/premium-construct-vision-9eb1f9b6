@@ -17,22 +17,9 @@ import {
 } from "lucide-react";
 import heroImg from "@/assets/hero.jpg";
 import textureImg from "@/assets/texture.jpg";
-import p1 from "@/assets/project1.jpg";
-import p2 from "@/assets/project2.jpg";
-import p3 from "@/assets/project3.jpg";
-import p4 from "@/assets/project4.jpg";
-import paver from "@/assets/paver.jpg";
-import excavator from "@/assets/excavator.jpg";
-import svcTile from "@/assets/svc-tile.jpg";
-import svcWaste from "@/assets/svc-waste.jpg";
-import svcFleet from "@/assets/svc-fleet.jpg";
-import svcMaterials from "@/assets/svc-materials.jpg";
-import svcDemolition from "@/assets/svc-demolition.jpg";
-import svcSnow from "@/assets/svc-snow.jpg";
-import svcTrees from "@/assets/svc-trees.jpg";
-import svcAggregate from "@/assets/svc-aggregate.jpg";
 import { Magnetic } from "@/components/Magnetic";
 import { Counter } from "@/components/Counter";
+import { useServices, useProjects } from "@/lib/content";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -72,17 +59,30 @@ export const Route = createFileRoute("/")({
   component: HomePage,
 });
 
+const ICONS: Record<string, typeof Layers> = {
+  asfaltirovanie: Layers,
+  "trotuarnaya-plitka": Mountain,
+  "vyvoz-musora": Package,
+  "arenda-spectehniki": Truck,
+  "zemlyanye-raboty": Wrench,
+  "dostavka-nerudnyh-materialov": Package,
+  demontazh: Wrench,
+  "uborka-snega": Truck,
+  kronirovanie: Mountain,
+  "nerudnye-materialy": Package,
+};
+
 const SERVICES = [
-  { icon: Layers, title: "Асфальтирование", desc: "Дворы, парковки, дороги, магистрали. Укладка от 50 м². От 300 ₽/кв.м.", tag: "01", slug: "asfaltirovanie", img: paver },
-  { icon: Mountain, title: "Укладка тротуарной плитки", desc: "Мощение дорог, площадок, отмостков, зон отдыха. От 450 ₽/кв.м.", tag: "02", slug: "trotuarnaya-plitka", img: svcTile },
-  { icon: Package, title: "Вывоз строительного мусора", desc: "Оперативный вывоз отходов с объекта. От 200 ₽/кв.м.", tag: "03", slug: "vyvoz-musora", img: svcWaste },
-  { icon: Truck, title: "Аренда спецтехники", desc: "Самосвалы, катки, экскаваторы, погрузчики, кран-борт. По договору.", tag: "04", slug: "arenda-spectehniki", img: svcFleet },
-  { icon: Wrench, title: "Земляные работы", desc: "Механизированная копка, газоны, бордюры. От 120 ₽/кв.м.", tag: "05", slug: "zemlyanye-raboty", img: excavator },
-  { icon: Package, title: "Доставка нерудных материалов", desc: "ПГС, щебень, песок, гравий, чернозём, торф. От 200 ₽/т.", tag: "06", slug: "dostavka-nerudnyh-materialov", img: svcMaterials },
-  { icon: Wrench, title: "Демонтаж зданий и сооружений", desc: "Снос и демонтажные работы любой сложности. От 50 ₽/кв.м.", tag: "07", slug: "demontazh", img: svcDemolition },
-  { icon: Truck, title: "Уборка и вывоз снега", desc: "Техника для уборки и вывоз снега в Перми. По договору.", tag: "08", slug: "uborka-snega", img: svcSnow },
-  { icon: Mountain, title: "Кронирование деревьев", desc: "Профессиональная обрезка и формирование кроны. От 1450 ₽/час.", tag: "09", slug: "kronirovanie", img: svcTrees },
-  { icon: Package, title: "Нерудные материалы", desc: "Песок, щебень, ПГС, чернозём, торф, бутовый камень. По договору.", tag: "10", slug: "nerudnye-materialy", img: svcAggregate },
+  { icon: Layers, title: "Асфальтирование", desc: "Дворы, парковки, дороги, магистрали. Укладка от 50 м². От 300 ₽/кв.м.", tag: "01", slug: "asfaltirovanie", img: "/content/paver.jpg" },
+  { icon: Mountain, title: "Укладка тротуарной плитки", desc: "Мощение дорог, площадок, отмостков, зон отдыха. От 450 ₽/кв.м.", tag: "02", slug: "trotuarnaya-plitka", img: "/content/svc-tile.jpg" },
+  { icon: Package, title: "Вывоз строительного мусора", desc: "Оперативный вывоз отходов с объекта. От 200 ₽/кв.м.", tag: "03", slug: "vyvoz-musora", img: "/content/svc-waste.jpg" },
+  { icon: Truck, title: "Аренда спецтехники", desc: "Самосвалы, катки, экскаваторы, погрузчики, кран-борт. По договору.", tag: "04", slug: "arenda-spectehniki", img: "/content/svc-fleet.jpg" },
+  { icon: Wrench, title: "Земляные работы", desc: "Механизированная копка, газоны, бордюры. От 120 ₽/кв.м.", tag: "05", slug: "zemlyanye-raboty", img: "/content/excavator.jpg" },
+  { icon: Package, title: "Доставка нерудных материалов", desc: "ПГС, щебень, песок, гравий, чернозём, торф. От 200 ₽/т.", tag: "06", slug: "dostavka-nerudnyh-materialov", img: "/content/svc-materials.jpg" },
+  { icon: Wrench, title: "Демонтаж зданий и сооружений", desc: "Снос и демонтажные работы любой сложности. От 50 ₽/кв.м.", tag: "07", slug: "demontazh", img: "/content/svc-demolition.jpg" },
+  { icon: Truck, title: "Уборка и вывоз снега", desc: "Техника для уборки и вывоз снега в Перми. По договору.", tag: "08", slug: "uborka-snega", img: "/content/svc-snow.jpg" },
+  { icon: Mountain, title: "Кронирование деревьев", desc: "Профессиональная обрезка и формирование кроны. От 1450 ₽/час.", tag: "09", slug: "kronirovanie", img: "/content/svc-trees.jpg" },
+  { icon: Package, title: "Нерудные материалы", desc: "Песок, щебень, ПГС, чернозём, торф, бутовый камень. По договору.", tag: "10", slug: "nerudnye-materialy", img: "/content/svc-aggregate.jpg" },
 ] as const;
 
 
@@ -199,6 +199,24 @@ function Stats() {
 }
 
 function Services() {
+  const { data: db } = useServices();
+  // Overlay DB photos/titles onto the curated marketing copy by slug.
+  const cards = SERVICES.map((s) => {
+    const row = db?.find((r) => r.slug === s.slug);
+    return row ? { ...s, title: row.title || s.title, img: row.image_url || s.img } : s;
+  });
+  // Append any extra services created in the admin panel.
+  const extras = (db ?? [])
+    .filter((r) => !SERVICES.some((s) => s.slug === r.slug))
+    .map((r) => ({
+      icon: ICONS[r.slug] ?? Layers,
+      title: r.title,
+      desc: r.description ?? r.price_text ?? "",
+      tag: String(r.sort_order).padStart(2, "0"),
+      slug: r.slug,
+      img: r.image_url ?? "/content/paver.jpg",
+    }));
+  const list = [...cards, ...extras];
   return (
     <section className="relative overflow-hidden py-32">
       <div className="absolute inset-0 -z-10 bg-mesh opacity-60" />
@@ -220,7 +238,7 @@ function Services() {
         </div>
 
         <div className="mt-20 grid gap-px bg-white/5 md:grid-cols-2 lg:grid-cols-3">
-          {SERVICES.map((s, i) => (
+          {list.map((s, i) => (
             <motion.div
               key={s.title}
               initial={{ opacity: 0, y: 40 }}
@@ -301,13 +319,24 @@ function Process() {
   );
 }
 
+const PROJECTS_FALLBACK = [
+  { img: "/content/project1.jpg", t: "Парковка ТЦ в Перми", c: "12 400 м² · 2024", h: "lg:row-span-2 lg:col-span-2" },
+  { img: "/content/project2.jpg", t: "Котлован под ЖК в Перми", c: "3 200 м³ · 2024", h: "" },
+  { img: "/content/project4.jpg", t: "Реконструкция дороги в Пермском крае", c: "8.5 км · 2023", h: "" },
+  { img: "/content/project3.jpg", t: "Благоустройство ЖК в Перми", c: "под ключ · 2023", h: "lg:col-span-2" },
+];
+
 function Projects() {
-  const items = [
-    { img: p1, t: "Парковка ТЦ «Метрополис»", c: "12 400 м² · 2024", h: "lg:row-span-2 lg:col-span-2" },
-    { img: p2, t: "Котлован под ЖК «Северный»", c: "3 200 м³ · 2024", h: "" },
-    { img: p4, t: "Реконструкция М-7", c: "8.5 км · 2023", h: "" },
-    { img: p3, t: "Благоустройство ЖК «Алые Паруса»", c: "под ключ · 2023", h: "lg:col-span-2" },
-  ];
+  const { data: db } = useProjects();
+  const spans = ["lg:row-span-2 lg:col-span-2", "", "", "lg:col-span-2"];
+  const items = db && db.length
+    ? db.slice(0, 4).map((p, i) => ({
+        img: p.image_url ?? "/content/project1.jpg",
+        t: p.title,
+        c: [p.metric, p.year].filter(Boolean).join(" · "),
+        h: spans[i] ?? "",
+      }))
+    : PROJECTS_FALLBACK;
   return (
     <section className="relative py-32">
       <div className="mx-auto max-w-[1500px] px-6">

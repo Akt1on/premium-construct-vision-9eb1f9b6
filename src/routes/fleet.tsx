@@ -2,10 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "motion/react";
 import { useMemo, useState } from "react";
 import { ArrowUpRight, Filter } from "lucide-react";
-import excavator from "@/assets/excavator.jpg";
-import paver from "@/assets/paver.jpg";
-import roller from "@/assets/roller.jpg";
-import truck from "@/assets/truck.jpg";
+import { useFleet } from "@/lib/content";
 
 export const Route = createFileRoute("/fleet")({
   head: () => ({
@@ -21,32 +18,43 @@ export const Route = createFileRoute("/fleet")({
   component: FleetPage,
 });
 
-type Cat = "all" | "transport" | "compaction" | "loaders" | "crane" | "excavation" | "backhoe" | "tractor";
+type FleetItem = { id: string; cat: string; name: string; spec: string; price: string; img: string };
 
-const FLEET = [
-  { id: "DUMP-01", cat: "transport", name: "Самосвалы", spec: "Перевозка сыпучих материалов, грунта, строительного мусора", price: "от 1 800 ₽/час", img: truck },
-  { id: "ROLL-01", cat: "compaction", name: "Катки", spec: "Уплотнение грунта и асфальта при дорожных работах", price: "от 2 200 ₽/час", img: roller },
-  { id: "LOAD-01", cat: "loaders", name: "Погрузчики", spec: "Погрузочно-разгрузочные работы любой сложности", price: "от 2 000 ₽/час", img: excavator },
-  { id: "CRAN-01", cat: "crane", name: "Кран-борты", spec: "Перевозка крупногабаритных грузов с самостоятельной погрузкой", price: "от 2 400 ₽/час", img: truck },
-  { id: "EXCV-01", cat: "excavation", name: "Экскаваторы", spec: "Рытьё котлованов, траншей и земляные работы", price: "от 2 600 ₽/час", img: excavator },
-  { id: "BHOE-01", cat: "backhoe", name: "Экскаваторы-погрузчики", spec: "Универсальная техника: копка, погрузка, транспортировка", price: "от 2 200 ₽/час", img: excavator },
-  { id: "TRAC-01", cat: "tractor", name: "Тракторы-экскаваторы", spec: "Многофункциональная техника для строительных и с/х задач", price: "от 2 000 ₽/час", img: paver },
-] as const;
-
-const CATS: { id: Cat; label: string; count: string }[] = [
-  { id: "all", label: "Вся техника", count: "14+" },
-  { id: "transport", label: "Самосвалы", count: "3" },
-  { id: "compaction", label: "Катки", count: "2" },
-  { id: "loaders", label: "Погрузчики", count: "2" },
-  { id: "crane", label: "Кран-борты", count: "2" },
-  { id: "excavation", label: "Экскаваторы", count: "2" },
-  { id: "backhoe", label: "Экск.-погрузчики", count: "2" },
-  { id: "tractor", label: "Тракторы-экск.", count: "1" },
+const FALLBACK: FleetItem[] = [
+  { id: "1", cat: "Самосвалы", name: "Самосвалы", spec: "Перевозка сыпучих материалов, грунта, строительного мусора", price: "от 1 800 ₽/час", img: "/content/truck.jpg" },
+  { id: "2", cat: "Катки", name: "Катки", spec: "Уплотнение грунта и асфальта при дорожных работах", price: "от 2 200 ₽/час", img: "/content/roller.jpg" },
+  { id: "3", cat: "Погрузчики", name: "Погрузчики", spec: "Погрузочно-разгрузочные работы любой сложности", price: "от 2 000 ₽/час", img: "/content/excavator.jpg" },
+  { id: "4", cat: "Кран-борты", name: "Кран-борты", spec: "Перевозка крупногабаритных грузов с самостоятельной погрузкой", price: "от 2 400 ₽/час", img: "/content/truck.jpg" },
+  { id: "5", cat: "Экскаваторы", name: "Экскаваторы", spec: "Рытьё котлованов, траншей и земляные работы", price: "от 2 600 ₽/час", img: "/content/excavator.jpg" },
+  { id: "6", cat: "Экскаваторы-погрузчики", name: "Экскаваторы-погрузчики", spec: "Универсальная техника: копка, погрузка, транспортировка", price: "от 2 200 ₽/час", img: "/content/excavator.jpg" },
+  { id: "7", cat: "Тракторы-экскаваторы", name: "Тракторы-экскаваторы", spec: "Многофункциональная техника для строительных и с/х задач", price: "от 2 000 ₽/час", img: "/content/paver.jpg" },
 ];
 
 function FleetPage() {
-  const [cat, setCat] = useState<Cat>("all");
-  const items = useMemo(() => (cat === "all" ? FLEET : FLEET.filter((f) => f.cat === cat)), [cat]);
+  const { data: db } = useFleet();
+  const [cat, setCat] = useState<string>("all");
+
+  const fleet: FleetItem[] = useMemo(() => {
+    if (db && db.length) {
+      return db.map((m) => ({
+        id: m.id,
+        cat: m.category || "Прочее",
+        name: m.name,
+        spec: m.specs || "",
+        price: m.price_text || "по запросу",
+        img: m.image_url || "/content/truck.jpg",
+      }));
+    }
+    return FALLBACK;
+  }, [db]);
+
+  const cats = useMemo(() => {
+    const map = new Map<string, number>();
+    for (const f of fleet) map.set(f.cat, (map.get(f.cat) ?? 0) + 1);
+    return [{ id: "all", label: "Вся техника", count: fleet.length }, ...[...map.entries()].map(([id, count]) => ({ id, label: id, count }))];
+  }, [fleet]);
+
+  const items = useMemo(() => (cat === "all" ? fleet : fleet.filter((f) => f.cat === cat)), [cat, fleet]);
 
   return (
     <div className="relative">
@@ -68,7 +76,7 @@ function FleetPage() {
       <section className="sticky top-16 z-30 border-y border-white/10 bg-background/80 backdrop-blur-xl">
         <div className="mx-auto flex max-w-[1500px] items-center gap-2 overflow-x-auto px-6 py-4">
           <Filter className="h-4 w-4 shrink-0 text-ember" />
-          {CATS.map((c) => (
+          {cats.map((c) => (
             <button
               key={c.id}
               onClick={() => setCat(c.id)}
@@ -98,7 +106,7 @@ function FleetPage() {
               <div className="relative aspect-[4/3] overflow-hidden">
                 <img src={m.img} alt={m.name} loading="lazy" className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1.2s] group-hover:scale-110" />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
-                <div className="absolute left-4 top-4 font-mono text-[10px] uppercase tracking-widest text-ember">{m.id}</div>
+                <div className="absolute left-4 top-4 font-mono text-[10px] uppercase tracking-widest text-ember">№ {String(i + 1).padStart(2, "0")}</div>
                 <div className="absolute right-4 top-4 rounded-sm glass px-2 py-1 font-mono text-[10px] uppercase tracking-widest">в наличии</div>
               </div>
               <div className="p-6">

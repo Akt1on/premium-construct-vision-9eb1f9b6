@@ -205,7 +205,7 @@ function ServicesManager() {
 
 /* ---------- PROJECTS ---------- */
 
-type Prj = { id: string; title: string; category: string | null; description: string | null; image_url: string | null; before_url: string | null; after_url: string | null; sort_order: number; is_active: boolean };
+type Prj = { id: string; title: string; category: string | null; description: string | null; image_url: string | null; before_url: string | null; after_url: string | null; year: string | null; metric: string | null; sort_order: number; is_active: boolean };
 
 function ProjectsManager() {
   const { rows, setRows, loaded, reload } = useRows<Prj>("projects");
@@ -216,7 +216,8 @@ function ProjectsManager() {
     setSaving(row.id);
     const { error } = await supabase.from("projects").update({
       title: row.title, category: row.category, description: row.description,
-      image_url: row.image_url, before_url: row.before_url, after_url: row.after_url, sort_order: row.sort_order,
+      image_url: row.image_url, before_url: row.before_url, after_url: row.after_url,
+      year: row.year, metric: row.metric, sort_order: row.sort_order,
     }).eq("id", row.id);
     setSaving(null);
     error ? toast.error(error.message) : toast.success("Сохранено");
@@ -231,7 +232,12 @@ function ProjectsManager() {
         <RowCard key={row.id} saving={saving === row.id} onSave={() => save(row)} onDelete={() => del(row.id)}>
           <Field label="Название" value={row.title} onChange={(v) => update(row.id, { title: v })} />
           <Field label="Категория" value={row.category ?? ""} onChange={(v) => update(row.id, { category: v })} />
+          <div className="grid grid-cols-2 gap-3">
+            <Field label="Показатель (площадь/объём)" value={row.metric ?? ""} onChange={(v) => update(row.id, { metric: v })} />
+            <Field label="Год" value={row.year ?? ""} onChange={(v) => update(row.id, { year: v })} />
+          </div>
           <Field label="Описание" value={row.description ?? ""} onChange={(v) => update(row.id, { description: v })} textarea />
+
           <div className="grid grid-cols-2 gap-3">
             <ImageField label="Фото «До»" value={row.before_url ?? ""} onChange={(v) => update(row.id, { before_url: v })} folder="projects" />
             <ImageField label="Фото «После»" value={row.after_url ?? ""} onChange={(v) => update(row.id, { after_url: v })} folder="projects" />
@@ -249,13 +255,13 @@ function ProjectsManager() {
 
 /* ---------- FLEET ---------- */
 
-type Flt = { id: string; name: string; specs: string | null; image_url: string | null; sort_order: number; is_active: boolean };
+type Flt = { id: string; name: string; specs: string | null; image_url: string | null; price_text: string | null; category: string | null; sort_order: number; is_active: boolean };
 
 function FleetManager() {
   const { rows, setRows, loaded, reload } = useRows<Flt>("fleet");
   const [saving, setSaving] = useState<string | null>(null);
   const update = (id: string, patch: Partial<Flt>) => setRows((r) => r.map((x) => (x.id === id ? { ...x, ...patch } : x)));
-  const save = async (row: Flt) => { setSaving(row.id); const { error } = await supabase.from("fleet").update({ name: row.name, specs: row.specs, image_url: row.image_url, sort_order: row.sort_order }).eq("id", row.id); setSaving(null); error ? toast.error(error.message) : toast.success("Сохранено"); };
+  const save = async (row: Flt) => { setSaving(row.id); const { error } = await supabase.from("fleet").update({ name: row.name, specs: row.specs, image_url: row.image_url, price_text: row.price_text, category: row.category, sort_order: row.sort_order }).eq("id", row.id); setSaving(null); error ? toast.error(error.message) : toast.success("Сохранено"); };
   const del = async (id: string) => { if (!confirm("Удалить технику?")) return; const { error } = await supabase.from("fleet").delete().eq("id", id); error ? toast.error(error.message) : (toast.success("Удалено"), reload()); };
   const add = async () => { const { error } = await supabase.from("fleet").insert({ name: "Новая техника", sort_order: rows.length + 1 }); error ? toast.error(error.message) : reload(); };
 
@@ -266,8 +272,13 @@ function FleetManager() {
         <RowCard key={row.id} saving={saving === row.id} onSave={() => save(row)} onDelete={() => del(row.id)}>
           <ImageField label="Фото" value={row.image_url ?? ""} onChange={(v) => update(row.id, { image_url: v })} folder="fleet" />
           <Field label="Название" value={row.name} onChange={(v) => update(row.id, { name: v })} />
+          <div className="grid grid-cols-2 gap-3">
+            <Field label="Категория" value={row.category ?? ""} onChange={(v) => update(row.id, { category: v })} />
+            <Field label="Цена" value={row.price_text ?? ""} onChange={(v) => update(row.id, { price_text: v })} />
+          </div>
           <Field label="Характеристики" value={row.specs ?? ""} onChange={(v) => update(row.id, { specs: v })} textarea />
           <Field label="Порядок" value={String(row.sort_order)} onChange={(v) => update(row.id, { sort_order: Number(v) || 0 })} />
+
         </RowCard>
       ))}
       <button onClick={add} className="grid min-h-[120px] place-items-center rounded-sm border border-dashed border-white/15 text-muted-foreground hover:border-ember hover:text-ember">
