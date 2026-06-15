@@ -46,7 +46,7 @@ export function SiteFooter() {
           <div className="font-display text-xs font-bold uppercase tracking-widest text-ember">Контакты</div>
           <ul className="mt-4 space-y-3 text-sm">
             <li className="flex items-start gap-3"><Phone className="mt-0.5 h-4 w-4 text-steel" /><a href="tel:+79082518226">+7 (908) 251-82-26</a></li>
-            <li className="flex items-start gap-3"><Mail className="mt-0.5 h-4 w-4 text-steel" /><a href="mailto:info@asfalltperm.ru">info@asfalltperm.ru</a></li>
+            <li className="flex items-start gap-3"><Mail className="mt-0.5 h-4 w-4 text-steel" /><a href="mailto:89082518226@mail.ru">89082518226@mail.ru</a></li>
             <li className="flex items-start gap-3"><MapPin className="mt-0.5 h-4 w-4 text-steel" /><span className="text-muted-foreground">г. Пермь, Пермский край</span></li>
           </ul>
         </div>
